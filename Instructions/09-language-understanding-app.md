@@ -138,7 +138,7 @@ Ora che sono state aggiunte alcune finalità, è possibile eseguire il training 
 
 6. Chiudere il pannello Test.
 
-## <a name="add-entities"></a>Aggiungi entità
+## <a name="add-entities"></a>Aggiungere entità
 
 Finora sono stati definite alcune espressioni semplici associate a finalità. La maggior parte delle applicazioni reali include espressioni più complesse da cui è necessario estrarre entità di dati specifiche per ottenere più contesto per la finalità.
 

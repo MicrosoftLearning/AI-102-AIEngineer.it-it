@@ -1,6 +1,6 @@
 ---
 lab:
-  title: Tradurre testo
+  title: Tradurre il testo
   module: Module 3 - Getting Started with Natural Language Processing
 ms.openlocfilehash: 4ca4394ce5d9456abeabbdded1ee219f271f284e
 ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
@@ -9,7 +9,7 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 11/16/2021
 ms.locfileid: "132625827"
 ---
-# <a name="translate-text"></a>Tradurre testo
+# <a name="translate-text"></a>Tradurre il testo
 
 Il servizio **Traduttore** è un servizio cognitivo che consente di tradurre testo tra lingue diverse.
 
@@ -41,7 +41,7 @@ Se non è già disponibile nella sottoscrizione, sarà necessario effettuare il 
 4. Attendere il completamento della distribuzione e quindi visualizzare i relativi dettagli.
 5. Al termine della distribuzione della risorsa, passare alla risorsa e visualizzare la rispettiva pagina **Chiavi ed endpoint**. Nella procedura successiva sarà necessario usare una delle chiavi e la posizione in cui è stato effettuato il provisioning del servizio, disponibili in questa pagina.
 
-## <a name="prepare-to-use-the-translator-service"></a>Preparazione per l'uso del servizio Traduttore
+## <a name="prepare-to-use-the-translator-service"></a>Preparare l'uso del servizio Traduttore
 
 In questo esercizio verrà completata un'applicazione client parzialmente implementata che usa l'API REST Traduttore per tradurre recensioni di hotel.
 
@@ -77,7 +77,7 @@ In questo esercizio verrà completata un'applicazione client parzialmente implem
 
 6. Osservare l'output perché il codice deve essere eseguito senza errori, visualizzando i contenuti di ogni file di testo di recensione nella cartella **reviews**. L'applicazione non usa attualmente il servizio Traduttore. Questo problema verrà risolto nella procedura successiva.
 
-## <a name="detect-language"></a>Rileva lingua
+## <a name="detect-language"></a>Rilevare la lingua
 
 Il servizio Traduttore può rilevare automaticamente la lingua di origine del testo da tradurre, ma consente anche di rilevare esplicitamente la lingua in cui è scritto il testo.
 
@@ -160,7 +160,7 @@ language = response[0]["language"]
 
 4. Osservare l'output, notando che questa volta viene identificata la lingua per ogni recensione.
 
-## <a name="translate-text"></a>Traduci testo
+## <a name="translate-text"></a>Tradurre il testo
 
 Ora che l'applicazione può determinare la lingua in cui sono scritte le recensioni, è possibile usare il servizio Traduttore per tradurre in inglese eventuali recensioni in lingue diverse dall'inglese.
 

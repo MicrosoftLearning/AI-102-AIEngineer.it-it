@@ -300,7 +300,7 @@ python read-text.py
 
 6. Quando richiesto, immettere **2** e osservare l'output, ovvero il testo estratto dal documento.
 
-## <a name="read-handwritten-text"></a>Leggi il testo scritto a mano
+## <a name="read-handwritten-text"></a>Leggere il testo scritto a mano
 
 Oltre al testo stampato, l'API **lettura** può estrarre testo scritto a mano in inglese.
 

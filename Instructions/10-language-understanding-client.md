@@ -57,7 +57,7 @@ Passare alla sottocartella **10-luis-client** nella cartella del progetto conten
 9. Nella pagina **Risorse di Azure**, se in **Risorse di previsione** non è elencata alcuna risorsa, aggiungere la risorsa di previsione nella sottoscrizione di Azure.
 10. Annotare la **Chiave primaria**, la **Chiave secondaria** e l'**URL dell'endpoint** per la risorsa di previsione. Le applicazioni client hanno bisogno dell'endpoint e di una delle chiavi per connettersi alla risorsa di previsione ed essere autenticate.
 
-## <a name="prepare-to-use-the-language-understanding-sdk"></a>Prepararsi a usare Language Understanding SDK
+## <a name="prepare-to-use-the-language-understanding-sdk"></a>Preparare l'uso di Language Understanding SDK
 
 In questo esercizio si completerà un'applicazione client parzialmente implementata che usa l'app Orologio di Language Understanding per stimare le finalità dall'input dell'utente e rispondere in modo appropriato.
 
