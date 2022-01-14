@@ -41,7 +41,7 @@ Se non è già disponibile nella sottoscrizione, sarà necessario effettuare il 
 4. Attendere il completamento della distribuzione e quindi visualizzare i dettagli della distribuzione.
 5. Al termine della distribuzione della risorsa, passare alla risorsa e visualizzare la rispettiva pagina **Chiavi ed endpoint**. Nella procedura successiva sarà necessario usare una delle chiavi e la posizione in cui è stato effettuato il provisioning del servizio, disponibili in questa pagina.
 
-## <a name="prepare-to-use-the-speech-translation-service"></a>Preparazione all'uso del servizio Traduzione vocale
+## <a name="prepare-to-use-the-speech-translation-service"></a>Preparare l'uso del servizio Traduzione vocale
 
 In questo esercizio verrà completata un'applicazione client parzialmente implementata che usa Speech SDK per riconoscere, tradurre e sintetizzare il parlato.
 
