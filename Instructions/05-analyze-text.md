@@ -126,7 +126,7 @@ In questo esercizio si completerà un'applicazione client parzialmente implement
 
 6. Osservare l'output perché il codice deve essere eseguito senza errori, visualizzando i contenuti di ogni file di testo di recensione nella cartella **reviews**. L'applicazione crea correttamente un client per l'API Analisi del testo, ma non la usa. Questo problema verrà risolto nella procedura successiva.
 
-## <a name="detect-language"></a>Rileva lingua
+## <a name="detect-language"></a>Rilevare la lingua
 
 Ora che è stato creato un client per l'API Analisi del testo, è possibile usarlo per rilevare la lingua in cui viene scritta ogni recensione.
 
