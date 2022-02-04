@@ -2,25 +2,25 @@
 lab:
   title: Tradurre il parlato
   module: Module 4 - Building Speech-Enabled Applications
-ms.openlocfilehash: 54bc0d9f942455e981437ecf5fe4a9de828c1cfb
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: 45c8d0d31bee5901247b22917d8dbad8c587a0bd
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625954"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801353"
 ---
 # <a name="translate-speech"></a>Tradurre il parlato
 
 Il servizio **Voce** include un'API **Traduzione vocale** che consente di tradurre il linguaggio parlato. Si supponga ad esempio di voler sviluppare un'applicazione di traduzione che possa essere usata dagli utenti quando viaggiano in luoghi di cui non conoscono la lingua locale. Gli utenti potrebbero pronunciare frasi quali "Dove si trova la stazione?" o "Ho bisogno di trovare una farmacia" nella propria lingua e ottenere la traduzione nella lingua locale.
 
-**Nota**: per questo esercizio è necessario usare un computer con altoparlanti/cuffia. Per un'esperienza ottimale è necessario anche un microfono. Alcuni ambienti virtuali ospitati potrebbero essere in grado di acquisire audio dal microfono locale, ma se questo approccio non funziona o non è disponibile alcun microfono, è possibile usare un file audio fornito per l'input vocale. Seguire con attenzione le istruzioni, poiché sarà necessario scegliere opzioni diverse in base all'uso di un microfono o del file audio.
+**Nota**: per questo esercizio è necessario usare un computer con altoparlanti/cuffia. Per un'esperienza ottimale è necessario anche un microfono. Alcuni ambienti virtuali ospitati potrebbero essere in grado di acquisire audio dal microfono locale, ma se questo approccio non funziona o non è disponibile alcun microfono, è possibile usare un file audio fornito per l'input vocale. Seguire con attenzione le istruzioni, poiché sarà necessario scegliere opzioni diverse in base alla scelta di usare un microfono oppure il file audio.
 
 ## <a name="clone-the-repository-for-this-course"></a>Clonare il repository per questo corso
 
 Se è già stato clonato il repository di codice **AI-102-AIEngineer** nell'ambiente in cui si sta lavorando a questo lab, aprirlo in Visual Studio Code. In caso contrario, seguire questa procedura per clonarlo ora.
 
 1. Avviare Visual Studio Code.
-2. Aprire il pannello (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale. Non è importante usare una cartella specifica.
+2. Aprire il riquadro comandi (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale (non importa quale).
 3. Dopo la clonazione del repository, aprire la cartella in Visual Studio Code.
 4. Attendere il completamento dell'installazione di file aggiuntivi per supportare i progetti in codice C# nel repository.
 
@@ -33,13 +33,13 @@ Se non è già disponibile nella sottoscrizione, sarà necessario effettuare il 
 1. Aprire il portale di Azure all'indirizzo `https://portal.azure.com` ed eseguire l'accesso usando l'account Microsoft associato alla sottoscrizione di Azure.
 2. Selezionare il pulsante **&#65291;Crea una risorsa**, cercare *Servizi cognitivi* e creare una risorsa di **Servizi cognitivi** con le impostazioni seguenti:
     - **Sottoscrizione**: *la propria sottoscrizione di Azure*
-    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, è possibile che non si sia autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
+    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, si potrebbe non essere autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
     - **Area**: *scegliere una qualsiasi area disponibile*
     - **Nome**: *immettere un nome univoco*
     - **Piano tariffario**: Standard S0
 3. Selezionare le caselle di controllo necessarie e creare la risorsa.
-4. Attendere il completamento della distribuzione e quindi visualizzare i dettagli della distribuzione.
-5. Al termine della distribuzione della risorsa, passare alla risorsa e visualizzare la rispettiva pagina **Chiavi ed endpoint**. Nella procedura successiva sarà necessario usare una delle chiavi e la posizione in cui è stato effettuato il provisioning del servizio, disponibili in questa pagina.
+4. Attendere il completamento della distribuzione e quindi visualizzare i relativi dettagli.
+5. Al termine della distribuzione, passare alla risorsa e visualizzare la rispettiva pagina **Chiavi ed endpoint**. Nella procedura successiva sarà necessario usare una delle chiavi e la posizione in cui è stato effettuato il provisioning del servizio, disponibili in questa pagina.
 
 ## <a name="prepare-to-use-the-speech-translation-service"></a>Preparazione all'uso del servizio Traduzione vocale
 
@@ -53,13 +53,13 @@ In questo esercizio verrà completata un'applicazione client parzialmente implem
     **C#**
 
     ```
-    dotnet add package Microsoft.CognitiveServices.Speech --version 1.14.0
+    dotnet add package Microsoft.CognitiveServices.Speech --version 1.19.0
     ```
     
     **Python**
     
     ```
-    pip install azure-cognitiveservices-speech==1.14.0
+    pip install azure-cognitiveservices-speech==1.19.0
     ```
 
 3. Visualizzare i contenuti della cartella **translator** e notare che include un file per le impostazioni di configurazione:
@@ -72,7 +72,7 @@ In questo esercizio verrà completata un'applicazione client parzialmente implem
     - **C#** : Program.cs
     - **Python**: translator.py
 
-    Aprire il file di codice e nella parte superiore, sotto i riferimenti allo spazio dei nomi esistenti, trovare il commento **Import namespaces**. In questo commento aggiungere quindi il codice seguente specifico per la lingua per importare gli spazi dei nomi necessari per usare Speech SDK:
+    Aprire il file di codice e nella parte superiore, sotto i riferimenti allo spazio dei nomi esistenti, trovare il commento **Import namespaces**. In questo commento aggiungere quindi il codice seguente specifico del linguaggio per importare gli spazi dei nomi necessari per usare Speech SDK:
 
     **C#**
     

@@ -2,12 +2,12 @@
 lab:
   title: Usare un contenitore di Servizi cognitivi
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: 5113ae946307ded7d4bb0674ef25da8687ab6890
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: c222f5526a09ee1ae2aad3732fe2e29eb14c12ef
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625828"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801341"
 ---
 # <a name="use-a-cognitive-services-container"></a>Usare un contenitore di Servizi cognitivi
 
@@ -20,7 +20,7 @@ Molte API dei servizi cognitivi possono essere in pacchetto e distribuite in un 
 Se è già stato clonato il repository di codice **AI-102-AIEngineer** nell'ambiente in cui si sta lavorando a questo lab, aprirlo in Visual Studio Code. In caso contrario, seguire questa procedura per clonarlo ora.
 
 1. Avviare Visual Studio Code.
-2. Aprire il pannello (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale. Non è importante usare una cartella specifica.
+2. Aprire il riquadro comandi (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale (non importa quale).
 3. Dopo la clonazione del repository, aprire la cartella in Visual Studio Code.
 4. Attendere il completamento dell'installazione di file aggiuntivi per supportare i progetti in codice C# nel repository.
 
@@ -54,7 +54,7 @@ Molte API dei servizi cognitivi di uso comune sono disponibili nelle immagini de
         - **Area**: *scegliere una qualsiasi area disponibile*
         - **Origine immagine**: Docker Hub o altro registro
         - **Tipo di immagine**: Pubblico
-        - **Immagine**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language:1.1.012840001-amd64`
+        - **Immagine**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language:1.1.013570001-amd64`
         - **Tipo di sistema operativo**: Linux
         - **Dimensioni**: 1 vCPU, 4 GB di memoria
     - **Rete**:

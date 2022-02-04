@@ -2,12 +2,12 @@
 lab:
   title: Riconoscimento e sintesi vocale
   module: Module 4 - Building Speech-Enabled Applications
-ms.openlocfilehash: 88f5d500dc5adad83bdd476a278329792e1b2e45
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: 9867905b0189fa5932dba02cd0815817171e4928
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625820"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801359"
 ---
 # <a name="recognize-and-synthesize-speech"></a>Riconoscimento e sintesi vocale
 
@@ -58,13 +58,13 @@ In questo esercizio verrà completata un'applicazione client parzialmente implem
     **C#**
 
     ```
-    dotnet add package Microsoft.CognitiveServices.Speech --version 1.14.0
+    dotnet add package Microsoft.CognitiveServices.Speech --version 1.19.0
     ```
     
     **Python**
     
     ```
-    pip install azure-cognitiveservices-speech==1.14.0
+    pip install azure-cognitiveservices-speech==1.19.0
     ```
 
 3. Visualizzare il contenuto della cartella **speaking-clock** e notare che include un file per le impostazioni di configurazione:
@@ -350,7 +350,7 @@ L'applicazione dell'orologio vocale usa una voce predefinita, che è possibile m
 
     ```C#
     // Configure speech synthesis
-    speechConfig.SpeechSynthesisVoiceName = "en-GB-RyanNeural"; // add this
+    speechConfig.SpeechSynthesisVoiceName = "en-GB-LibbyNeural"; // add this
     using SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
     ```
     
@@ -358,7 +358,7 @@ L'applicazione dell'orologio vocale usa una voce predefinita, che è possibile m
     
     ```Python
     # Configure speech synthesis
-    speech_config.speech_synthesis_voice_name = 'en-GB-RyanNeural' # add this
+    speech_config.speech_synthesis_voice_name = 'en-GB-LibbyNeural' # add this
     speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
     ```
 
