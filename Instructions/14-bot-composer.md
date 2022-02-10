@@ -2,12 +2,12 @@
 lab:
   title: Creare un bot con Bot Framework Composer
   module: Module 7 - Conversational AI and the Azure Bot Service
-ms.openlocfilehash: 0285f13caf0c53c90d8ecc93d403ef07238441e7
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: f25609df8d9abc29e691bd83d0470561c9e3e4b0
+ms.sourcegitcommit: b934aa694b86756d8b297a384cc6b707f0536e57
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625837"
+ms.lasthandoff: 12/08/2021
+ms.locfileid: "134300687"
 ---
 # <a name="create-a-bot-with-bot-framework-composer"></a>Creare un bot con Bot Framework Composer
 
@@ -216,7 +216,7 @@ Le interazioni con il bot meteo fino a questo momento sono avvenute tramite test
 
 ```
 [Activity    
-    Text = ${TextInput_Prompt_Kz22lf_text()}    
+    Text = Enter your city.
     SuggestedActions = Cancel
 ]
 ```

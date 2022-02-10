@@ -18,7 +18,7 @@ Gran parte dei dati creati e utilizzati oggi è in formato video. **Analizzatore
 Se è già stato clonato il repository di codice **AI-102-AIEngineer** nell'ambiente in cui si sta lavorando a questo lab, aprirlo in Visual Studio Code. In caso contrario, seguire questa procedura per clonarlo ora.
 
 1. Avviare Visual Studio Code.
-2. Aprire il riquadro comandi (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale. Non è importante usare una cartella specifica.
+2. Aprire il riquadro comandi (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale (non importa quale).
 3. Dopo la clonazione del repository, aprire la cartella in Visual Studio Code.
 4. Attendere il completamento dell'installazione di file aggiuntivi per supportare i progetti in codice C# nel repository.
 
