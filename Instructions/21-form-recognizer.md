@@ -2,12 +2,12 @@
 lab:
   title: Estrarre dati dai moduli
   module: Module 11 - Reading Text in Images and Documents
-ms.openlocfilehash: 6d2d43675faaa37f2123ff64ab7e8856007fe314
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: e2181d06b7dbf14bb5ea2a850eeb39d80a575f61
+ms.sourcegitcommit: 254d3fe43a77d925ba3bfb81daae737ec8203bfa
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625817"
+ms.lasthandoff: 12/07/2021
+ms.locfileid: "133893548"
 ---
 # <a name="extract-data-from-forms"></a>Estrarre dati dai moduli 
 
@@ -104,7 +104,7 @@ setup
 
 > **Importante**: prima di procedere, incollare l'URI di firma di accesso condiviso in un punto in cui sarà possibile recuperarlo nuovamente in un secondo momento, ad esempio in un nuovo file di testo in Visual Studio Code.
 
-15. Nel portale di Azure aggiornare il gruppo di risorse e verificare che contenga l'account di archiviazione di Azure appena creato. Aprire l'account di archiviazione e nel riquadro a sinistra selezionare **Storage Explorer**. In Storage Explorer espandere **CONTENITORI BLOB** e selezionare il contenitore **sampleforms** per verificare che i file siano stati caricati dalla cartella **21-custom-form/sample-forms** locale.
+15. Nel portale di Azure aggiornare il gruppo di risorse e verificare che contenga l'account di archiviazione di Azure appena creato. Aprire l'account di archiviazione e nel riquadro a sinistra selezionare **Browser archiviazione (anteprima)** . Nel browser archiviazione espandere **CONTENITORI BLOB** e selezionare il contenitore **sampleforms** per verificare che i file siano stati caricati dalla cartella **21-custom-form/sample-forms** locale.
 
 ## <a name="train-a-model-without-labels"></a>Eseguire il training di un modello *senza* etichette
 
