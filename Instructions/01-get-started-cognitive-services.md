@@ -2,12 +2,12 @@
 lab:
   title: Introduzione a Servizi cognitivi
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: 184092faafa5e4a138bd9d9cc07f253110f7d8c3
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: 4baba38b03c6d7bb5fe04fa5e73bb606e970550b
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625829"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801356"
 ---
 # <a name="get-started-with-cognitive-services"></a>Introduzione a Servizi cognitivi
 
@@ -18,7 +18,7 @@ In questo esercizio si inizieranno a usare i servizi cognitivi creando una risor
 Se il repository di codice **AI-102-AIEngineer** non è già stato clonato nell'ambiente in cui si sta lavorando a questo lab, seguire questa procedura per clonarlo. In caso contrario, aprire la cartella clonata in Visual Studio Code.
 
 1. Avviare Visual Studio Code.
-2. Aprire il riquadro comandi (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale. Non è importante usare una cartella specifica.
+2. Aprire il riquadro comandi (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale (non importa quale).
 3. Dopo la clonazione del repository, aprire la cartella in Visual Studio Code.
 4. Attendere il completamento dell'installazione di file aggiuntivi per supportare i progetti in codice C# nel repository.
 
@@ -26,7 +26,7 @@ Se il repository di codice **AI-102-AIEngineer** non è già stato clonato nell'
 
 ## <a name="provision-a-cognitive-services-resource"></a>Effettuare il provisioning di una risorsa di Servizi cognitivi
 
-I servizi basati sul cloud di Servizi cognitivi di Azure incapsulano funzionalità di intelligenza artificiale che è possibile incorporare nelle applicazioni. È possibile effettuare il provisioning di singole risorse di Servizi cognitivi per API specifiche (ad esempio **Analisi del testo** o **Visione artificiale**) oppure effettuare il provisioning di una risorsa generale di **Servizi cognitivi** che fornisce l'accesso a più API di Servizi cognitivi tramite un singolo endpoint e una chiave. In questo caso, si userà una singola risorsa di **Servizi cognitivi**.
+I servizi basati sul cloud di Servizi cognitivi di Azure incapsulano funzionalità di intelligenza artificiale che è possibile incorporare nelle applicazioni. È possibile effettuare il provisioning di singole risorse di Servizi cognitivi per API specifiche (ad esempio **Lingua** o **Visione artificiale**) oppure effettuare il provisioning di una risorsa generale di **Servizi cognitivi** che fornisce l'accesso a più API di Servizi cognitivi tramite un singolo endpoint e una chiave. In questo caso, si userà una singola risorsa di **Servizi cognitivi**.
 
 1. Aprire il portale di Azure all'indirizzo `https://portal.azure.com` ed eseguire l'accesso usando l'account Microsoft associato alla sottoscrizione di Azure.
 2. Selezionare il pulsante **&#65291;Crea una risorsa**, cercare *Servizi cognitivi* e creare una risorsa di **Servizi cognitivi** con le impostazioni seguenti:
@@ -44,7 +44,7 @@ I servizi basati sul cloud di Servizi cognitivi di Azure incapsulano funzionalit
 
 ## <a name="use-a-rest-interface"></a>Usare un'interfaccia REST
 
-Le API di Servizi cognitivi sono basate su REST, quindi è possibile usarle inviando richieste JSON su HTTP. In questo esempio si esplorerà un'applicazione console che usa l'API REST **Analisi del testo** per eseguire il rilevamento della lingua, ma il principio di base è lo stesso per tutte le API supportate dalla risorsa di Servizi cognitivi.
+Le API di Servizi cognitivi sono basate su REST, quindi è possibile usarle inviando richieste JSON su HTTP. In questo esempio si esplorerà un'applicazione console che usa l'API REST **Lingua** per eseguire il rilevamento della lingua, ma il principio di base è lo stesso per tutte le API supportate dalla risorsa di Servizi cognitivi.
 
 > **Nota**: in questo esercizio è possibile scegliere se usare l'API REST da **C#** o **Python**. Nella procedura seguente eseguire le azioni appropriate per il linguaggio scelto.
 
@@ -93,13 +93,13 @@ Le API di Servizi cognitivi sono basate su REST, quindi è possibile usarle invi
     **C#**
 
     ```
-    dotnet add package Azure.AI.TextAnalytics --version 5.0.0
+    dotnet add package Azure.AI.TextAnalytics --version 5.1.0
     ```
 
     **Python**
 
     ```
-    pip install azure-ai-textanalytics==5.0.0
+    pip install azure-ai-textanalytics==5.1.0
     ```
 
 3. Visualizzare il contenuto della cartella **sdk-client** e notare che include un file per le impostazioni di configurazione:

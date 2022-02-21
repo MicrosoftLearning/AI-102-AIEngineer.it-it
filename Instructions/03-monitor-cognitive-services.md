@@ -2,12 +2,12 @@
 lab:
   title: Monitorare Servizi cognitivi
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: caf885516acab74cff46d3a4f807ee98aed446a3
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: e0e0042421a4f7150fc3b95cef80887c81a78f3a
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625821"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801338"
 ---
 # <a name="monitor-cognitive-services"></a>Monitorare Servizi cognitivi
 
@@ -18,7 +18,7 @@ Servizi cognitivi di Azure può essere una parte essenziale di un'infrastruttura
 Se è già stato clonato il repository di codice **AI-102-AIEngineer** nell'ambiente in cui si sta lavorando a questo lab, aprirlo in Visual Studio Code. In caso contrario, seguire questa procedura per clonarlo ora.
 
 1. Avviare Visual Studio Code.
-2. Aprire il pannello (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale. Non è importante usare una cartella specifica.
+2. Aprire il riquadro comandi (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale (non importa quale).
 3. Dopo la clonazione del repository, aprire la cartella in Visual Studio Code.
 4. Attendere il completamento dell'installazione di file aggiuntivi per supportare i progetti in codice C# nel repository.
 
@@ -46,12 +46,14 @@ Iniziamo il monitoraggio definendo una regola di avviso in modo da poter rilevar
 1. Nel portale di Azure passare alla risorsa di Servizi cognitivi e visualizzare la relativa pagina **Avvisi** (nella sezione **Monitoraggio**).
 2. Selezionare **+ Nuova regola di avviso**
 3. Nella pagina **Crea regola di avviso** in **Ambito** verificare che la risorsa di Servizi cognitivi sia elencata.
-4. In **Condizione** fare clic su **Aggiungi condizione**. A destra viene visualizzato il riquadro **Configura logica dei segnali** in cui è possibile selezionare un tipo di segnale da monitorare.
+4. In **Condizione** fare clic su **Aggiungi condizione**. A destra viene visualizzato il riquadro **Selezionare un segnale** in cui è possibile selezionare un tipo di segnale da monitorare.
 5. Nell'elenco **tipo di segnale** selezionare **Log attività** e quindi nell'elenco filtrato selezionare **Elenca chiavi**.
-6. Esaminare l'attività nelle ultime 6 ore e quindi selezionare **Fine**.
-7. Nella pagina **Crea regola di avviso** in **Azioni** si noti che è possibile specificare un *gruppo di azioni*. In questo modo è possibile configurare azioni automatiche quando viene generato un avviso, ad esempio l'invio di una notifica tramite posta elettronica. Questa operazione non verrà eseguita in questo esercizio, ma può essere utile eseguirla in un ambiente di produzione.
-8. Nella sezione **Alert Rules Details** (Dettagli regole di avviso) impostare il **Nome regola di avviso** su **Key List Alert** (Avviso elenco chiavi) e fare clic su **Crea regola di avviso**. Attendere la creazione della regola di avviso.
-9. In Visual Studio Code fare clic con il pulsante destro del mouse sulla cartella **03-monitor** e aprire un terminale integrato. Immettere quindi il comando seguente per accedere alla sottoscrizione di Azure usando l'interfaccia della riga di comando di Azure.
+6. Esaminare l'attività nelle ultime 6 ore.
+7. Selezionare la scheda **Azioni**. Si noti che è possibile specificare un *gruppo di azioni*. In questo modo è possibile configurare azioni automatiche quando viene generato un avviso, ad esempio l'invio di una notifica tramite posta elettronica. Questa operazione non verrà eseguita in questo esercizio, ma può essere utile eseguirla in un ambiente di produzione.
+8. Nella scheda **Dettagli** impostare **Nome regola di avviso** su **Key List Alert**.
+9. Selezionare **Rivedi e crea**. 
+10. Esaminare la configurazione per l'avviso. Selezionare **Crea** e attendere la creazione della regola di avviso.
+11. In Visual Studio Code fare clic con il pulsante destro del mouse sulla cartella **03-monitor** e aprire un terminale integrato. Immettere quindi il comando seguente per accedere alla sottoscrizione di Azure usando l'interfaccia della riga di comando di Azure.
 
     ```
     az login
@@ -79,7 +81,7 @@ Iniziamo il monitoraggio definendo una regola di avviso in modo da poter rilevar
 
 Il comando restituisce un elenco delle chiavi per la risorsa di Servizi cognitivi.
 
-11. Tornare al browser contenente il portale di Azure e aggiornare la **pagina Avviso**. Nella tabella verrà visualizzato un avviso di **gravità 4** (in caso contrario, attendere fino a cinque minuti e aggiornare di nuovo).
+11. Tornare al browser contenente il portale di Azure e aggiornare la **Pagina Avvisi**. Nella tabella verrà visualizzato un avviso di **gravità 4** (in caso contrario, attendere fino a cinque minuti e aggiornare di nuovo).
 12. Selezionare l'avviso per visualizzarne i dettagli.
 
 ## <a name="visualize-a-metric"></a>Visualizzare una metrica
@@ -92,7 +94,7 @@ Oltre a definire gli avvisi, è possibile visualizzare le metriche della risorsa
 4. Per generare alcune richieste al servizio cognitivo, si userà **curl**, uno strumento da riga di comando per le richieste HTTP. Nella cartella **03-monitor** di Visual Studio Code aprire **rest-test.cmd** e modificare il comando **curl** in esso contenuto (illustrato di seguito), sostituendo *&lt;yourEndpoint&gt;* e *&lt;yourKey&gt;* con l'URI dell'endpoint e la chiave **Key1** per usare l'API Analisi del testo nella risorsa di Servizi cognitivi.
 
     ```
-    curl -X POST "<yourEndpoint>/text/analytics/v3.0/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':           [{'id':1,'text':'hello'}]}"
+    curl -X POST "<yourEndpoint>/text/analytics/v3.1/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':           [{'id':1,'text':'hello'}]}"
     ```
 
 5. Salvare le modifiche e quindi nel terminale integrato per la cartella **03-monitor** eseguire il comando seguente:

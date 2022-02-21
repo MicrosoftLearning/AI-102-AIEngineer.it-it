@@ -2,12 +2,12 @@
 lab:
   title: Creare una competenza personalizzata per Ricerca cognitiva di Azure
   module: Module 12 - Creating a Knowledge Mining Solution
-ms.openlocfilehash: 288b9badac3a3ec4d1461a5da14faa2e52143959
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: e09dbbc4fb72ae51e911f1440fd29d4917e50a6a
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625834"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801368"
 ---
 # <a name="create-a-custom-skill-for-azure-cognitive-search"></a>Creare una competenza personalizzata per Ricerca cognitiva di Azure
 
@@ -128,10 +128,10 @@ Ora è possibile eseguire ricerche nell'indice disponibile.
 2. Nella casella **Stringa di query** di Esplora ricerche immettere la stringa di query seguente e quindi selezionare **Cerca**.
 
     ```
-    search=London&$select=url,sentiment,keyphrases&$filter=metadata_author eq 'Reviewer' and sentiment gt 0.5
+    search=London&$select=url,sentiment,keyphrases&$filter=metadata_author eq 'Reviewer' and sentiment eq 'positive'
     ```
 
-    Questa query recupera l'**URL**, il **sentiment** e le **keyphrase** per tutti i documenti che citano *Londra*, creati dal *revisore*, che hanno un punteggio del **sentiment** maggiore di *0,5*; in altre parole, recensioni positive che citano Londra.
+    La query recupera gli elementi **url**, **sentiment** e **keyphrases** per tutti i documenti in cui è presente la parola *London*, il cui autore è *Reviewer* e che hanno un'etichetta di **sentiment** equivalente a "positive" (in altre parole, recensioni positive che parlano di Londra)
 
 ## <a name="create-an-azure-function-for-a-custom-skill"></a>Creare una funzione di Azure per una competenza personalizzata
 

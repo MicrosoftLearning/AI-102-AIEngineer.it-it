@@ -2,12 +2,12 @@
 lab:
   title: Gestire la sicurezza di Servizi cognitivi
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: b4606ae6dd11a94505b828f4454786f66fd0ad16
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: dcab47cf20f54d6bcbed9a3e40081b703fc2d5ba
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625995"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801335"
 ---
 # <a name="manage-cognitive-services-security"></a>Gestire la sicurezza di Servizi cognitivi
 
@@ -20,7 +20,7 @@ L'accesso ai servizi cognitivi viene in genere controllato tramite chiavi di aut
 Se è già stato clonato il repository di codice **AI-102-AIEngineer** nell'ambiente in cui si sta lavorando a questo lab, aprirlo in Visual Studio Code. In caso contrario, seguire questa procedura per clonarlo ora.
 
 1. Avviare Visual Studio Code.
-2. Aprire il pannello (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale. Non è importante usare una cartella specifica.
+2. Aprire il riquadro comandi (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale (non importa quale).
 3. Dopo la clonazione del repository, aprire la cartella in Visual Studio Code.
 4. Attendere il completamento dell'installazione di file aggiuntivi per supportare i progetti in codice C# nel repository.
 
@@ -131,7 +131,7 @@ Prima di tutto, è necessario creare un insieme di credenziali delle chiavi e ag
 
 ### <a name="create-a-service-principal"></a>Creare un'entità servizio
 
-Per accedere al segreto nell'insieme di credenziali delle chiavi, l'applicazione deve usare un'entità servizio che abbia accesso al segreto. Si userà l'interfaccia della riga di comando di Azure per creare l'entità servizio e concedere l'accesso al segreto in Azure Vault.
+Per accedere al segreto nell'insieme di credenziali delle chiavi, l'applicazione deve usare un'entità servizio che abbia accesso al segreto. Si userà l'interfaccia della riga di comando di Azure per creare l'entità servizio, individuare il relativo ID oggetto e concedere l'accesso al segreto in Azure Vault.
 
 1. Tornare a Visual Studio Code e nel terminale integrato per la cartella **02-cognitive-security** eseguire il comando dell'interfaccia della riga di comando di Azure seguente, sostituendo *&lt;spName&gt;* con un nome appropriato per un'identità dell'applicazione, ad esempio *ai-app*. Sostituire anche *&lt;subscriptionId&gt;* e *&lt;resourceGroup&gt;* con i valori corretti per l'ID sottoscrizione e il gruppo di risorse contenente le risorse di Servizi cognitivi e dell'insieme di credenziali delle chiavi:
 
@@ -155,10 +155,16 @@ L'output di questo comando include informazioni sulla nuova entità servizio. L'
 
 Prendere nota dei valori **appId**, **password** e **tenant**, in quanto saranno necessari in un secondo momento (se si chiude questo terminale, non sarà possibile recuperare la password. È quindi importante prendere nota dei valori. È possibile incollare l'output in un nuovo file di testo in Visual Studio Code per assicurarsi di poter trovare i valori necessari in un secondo momento).
 
-2. Per assegnare l'autorizzazione per la nuova entità servizio per accedere ai segreti in Key Vault, eseguire il comando dell'interfaccia della riga di comando di Azure seguente, sostituendo *&lt;keyVaultName&gt;* con il nome della risorsa di Azure Key Vault e *&lt;spName&gt;* con lo stesso valore specificato durante la creazione dell'entità servizio.
+2. Per ottenere l'**ID oggetto** dell'entità servizio, eseguire il comando seguente dell'interfaccia della riga di comando di Azure, sostituendo *&lt;appId&gt;* con il valore dell'ID app dell'entità servizio.
 
     ```
-    az keyvault set-policy -n <keyVaultName> --spn "api://<spName>" --secret-permissions get list
+    az ad sp show --id <appId> --query objectId --out tsv
+    ```
+
+3. Per assegnare alla nuova entità servizio l'autorizzazione per accedere ai segreti in Key Vault, eseguire il comando seguente dell'interfaccia della riga di comando di Azure, sostituendo *&lt;keyVaultName&gt;* con il nome della risorsa di Azure Key Vault e *&lt;objectId&gt;* con il valore dell'ID oggetto dell'entità servizio.
+
+    ```
+    az keyvault set-policy -n <keyVaultName> --object-id <objectId> --secret-permissions get list
     ```
 
 ### <a name="use-the-service-principal-in-an-application"></a>Usare l'entità servizio in un'applicazione
@@ -173,15 +179,15 @@ A questo punto è possibile usare l'identità dell'entità servizio in un'applic
     **C#**
 
     ```
-    dotnet add package Azure.AI.TextAnalytics --version 5.0.0
-    dotnet add package Azure.Identity --version 1.3.0
+    dotnet add package Azure.AI.TextAnalytics --version 5.1.0
+    dotnet add package Azure.Identity --version 1.5.0
     dotnet add package Azure.Security.KeyVault.Secrets --version 4.2.0-beta.3
     ```
 
     **Python**
 
     ```
-    pip install azure-ai-textanalytics==5.0.0
+    pip install azure-ai-textanalytics==5.1.0
     pip install azure-identity==1.5.0
     pip install azure-keyvault-secrets==4.2.0
     ```

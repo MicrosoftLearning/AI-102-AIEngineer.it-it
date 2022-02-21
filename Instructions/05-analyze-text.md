@@ -2,25 +2,25 @@
 lab:
   title: Analizzare il testo
   module: Module 3 - Getting Started with Natural Language Processing
-ms.openlocfilehash: eb4e413e64c322f182cd5eadaff56bb880636e2f
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: 27cd22e81d4fe8fda27e6fc960d3b3aeb8debded
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625994"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801329"
 ---
 # <a name="analyze-text"></a>Analizzare il testo
 
-L'**API Analisi del testo** è un servizio cognitivo che supporta l'analisi del testo, tra cui il rilevamento lingua, l'analisi valutazione, l'estrazione di frasi chiave e il riconoscimento di entità.
+Il servizio **Lingua** è un servizio cognitivo che supporta l'analisi del testo, tra cui il rilevamento lingua, l'analisi valutazione, l'estrazione di frasi chiave e il riconoscimento di entità.
 
-Si supponga, ad esempio, che un'agenzia di viaggi voglia elaborare recensioni di alberghi inviate al sito Web della società. L'API Analisi del testo consente di determinare la lingua in cui è scritta ogni recensione, la valutazione (positiva, neutra o negativa) delle recensioni, le frasi chiave che potrebbero indicare gli argomenti principali discussi nella recensione e le entità denominate, ad esempio luoghi, luoghi di interesse o persone citate nelle recensioni.
+Si supponga, ad esempio, che un'agenzia di viaggi voglia elaborare recensioni di alberghi inviate al sito Web della società. Il servizio Lingua consente di determinare la lingua in cui è scritta ogni recensione, la valutazione (positiva, neutra o negativa) delle recensioni, le frasi chiave che possono indicare gli argomenti principali discussi nella recensione e le entità denominate, ad esempio località, luoghi di interesse o persone citate nelle recensioni.
 
 ## <a name="clone-the-repository-for-this-course"></a>Clonare il repository per questo corso
 
 Se il repository di codice **AI-102-AIEngineer** non è già stato clonato nell'ambiente in cui si sta lavorando a questo lab, seguire questa procedura per clonarlo. In caso contrario, aprire la cartella clonata in Visual Studio Code.
 
 1. Avviare Visual Studio Code.
-2. Aprire il pannello (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale. Non è importante usare una cartella specifica.
+2. Aprire il riquadro comandi (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale (non importa quale).
 3. Dopo la clonazione del repository, aprire la cartella in Visual Studio Code.
 4. Attendere il completamento dell'installazione di file aggiuntivi per supportare i progetti in codice C# nel repository.
 
@@ -39,11 +39,11 @@ Se non è già disponibile nella sottoscrizione, sarà necessario effettuare il 
     - **Piano tariffario**: Standard S0
 3. Selezionare le caselle di controllo necessarie e creare la risorsa.
 4. Attendere il completamento della distribuzione e quindi visualizzare i relativi dettagli.
-5. Al termine della distribuzione, passare alla risorsa e visualizzare la rispettiva pagina **Chiavi ed endpoint**. Nella procedura successiva saranno necessari l'endpoint e una delle chiavi indicate in questa pagina.
+5. Al termine della distribuzione, passare alla risorsa e visualizzare la rispettiva pagina **Chiavi ed endpoint**. Nella procedura successiva saranno necessari l'endpoint e una delle chiavi di questa pagina.
 
-## <a name="prepare-to-use-the-text-analytics-sdk"></a>Operazioni preliminari all'uso di Text Analytics SDK
+## <a name="prepare-to-use-the-language-sdk-for-text-analytics"></a>Predisporre l'uso dell'SDK della lingua per l'analisi del testo
 
-In questo esercizio si completerà un'applicazione client parzialmente implementata che usa Text Analytics SDK per analizzare le recensioni degli alberghi.
+In questo esercizio si completerà un'applicazione client parzialmente implementata che usa l'SDK per l'analisi del testo del servizio Lingua per analizzare le recensioni degli alberghi.
 
 > **Nota**: è possibile scegliere di usare l'SDK per **C#** o **Python**. Nella procedura seguente eseguire le azioni appropriate per il linguaggio scelto.
 
@@ -53,13 +53,13 @@ In questo esercizio si completerà un'applicazione client parzialmente implement
     **C#**
     
     ```
-    dotnet add package Azure.AI.TextAnalytics --version 5.0.0
+    dotnet add package Azure.AI.TextAnalytics --version 5.1.0
     ```
     
     **Python**
     
     ```
-    pip install azure-ai-textanalytics==5.0.0
+    pip install azure-ai-textanalytics==5.1.0
     ```
     
 3. Visualizzare il contenuto della cartella **text-analysis** e notare che include un file per le impostazioni di configurazione:
@@ -126,7 +126,7 @@ In questo esercizio si completerà un'applicazione client parzialmente implement
 
 6. Osservare l'output perché il codice deve essere eseguito senza errori, visualizzando i contenuti di ogni file di testo di recensione nella cartella **reviews**. L'applicazione crea correttamente un client per l'API Analisi del testo, ma non la usa. Questo problema verrà risolto nella procedura successiva.
 
-## <a name="detect-language"></a>Rilevare la lingua
+## <a name="detect-language"></a>Rileva lingua
 
 Ora che è stato creato un client per l'API Analisi del testo, è possibile usarlo per rilevare la lingua in cui viene scritta ogni recensione.
 
@@ -350,4 +350,4 @@ Oltre alle entità classificate, l'API Analisi del testo è in grado di rilevare
 
 ## <a name="more-information"></a>Altre informazioni
 
-Per altre informazioni sull'uso del servizio **Analisi del testo**, vedere la [documentazione di Analisi del testo](https://docs.microsoft.com/azure/cognitive-services/text-analytics/).
+Per altre informazioni sull'uso del servizio **Lingua**, vedere la [documentazione di Analisi del testo](https://docs.microsoft.com/azure/cognitive-services/language-service/).

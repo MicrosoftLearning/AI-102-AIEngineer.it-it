@@ -2,12 +2,12 @@
 lab:
   title: Rilevare oggetti nelle immagini con il servizio Visione personalizzata
   module: Module 9 - Developing Custom Vision Solutions
-ms.openlocfilehash: a45f5d06f7abace5ad4472c93dc9de360ca2718a
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: a4b3111b90476ebb752734f46d112c374f2019cf
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625923"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801374"
 ---
 # <a name="detect-objects-in-images-with-custom-vision"></a>Rilevare oggetti nelle immagini con il servizio Visione personalizzata
 
@@ -18,7 +18,7 @@ In questo esercizio si userà il servizio Visione personalizzata per eseguire il
 Se è già stato clonato il repository di codice **AI-102-AIEngineer** nell'ambiente in cui si sta lavorando a questo lab, aprirlo in Visual Studio Code. In caso contrario, seguire questa procedura per clonarlo ora.
 
 1. Avviare Visual Studio Code.
-2. Aprire il pannello (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale. Non è importante usare una cartella specifica.
+2. Aprire il riquadro comandi (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale (non importa quale).
 3. Dopo la clonazione del repository, aprire la cartella in Visual Studio Code.
 4. Attendere il completamento dell'installazione di file aggiuntivi per supportare i progetti in codice C# nel repository.
 
@@ -33,15 +33,14 @@ Se nella sottoscrizione di Azure sono già disponibili risorse di **Visione pers
     - **Opzioni di creazione**: Entrambi
     - **Sottoscrizione**: *la propria sottoscrizione di Azure*
     - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, si potrebbe non essere autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
+    - **Area**: *scegliere una qualsiasi area disponibile*
     - **Nome**: *immettere un nome univoco*
-    - **Percorso di training**: *scegliere una qualsiasi area geografica disponibile*
     - **Piano tariffario per il training**: F0
-    - **Percorso di stima**: *la stessa area geografica della risorsa di training*
     - **Piano tariffario per le previsioni**: F0
 
     > **Nota**: se è già disponibile un servizio di visione personalizzata F0 nella sottoscrizione in uso, selezionare **S0**.
 
-3. Attendere che le risorse vengano create, quindi visualizzare i dettagli di distribuzione e tenere presente che verrà eseguito il provisioning di due risorse di Visione personalizzata: una per il training e un'altra per la previsione. È possibile visualizzarle accedendo al gruppo di risorse in cui sono state create.
+3. Attendere la creazione delle risorse e quindi visualizzare i dettagli di distribuzione e osservare che è stato effettuato il provisioning di due risorse di Visione personalizzata: una per il training e un'altra per la stima (suffisso **-Prediction**). È possibile visualizzarle accedendo al gruppo di risorse in cui sono state create.
 
 > **Importante**: per ogni risorsa sono disponibili un *endpoint* e *chiavi* specifiche, che vengono usati per gestire l'accesso dal codice. Per eseguire il training di un modello di classificazione immagini, il codice deve usare la risorsa di *training* (con l'endpoint e la chiave corrispondenti). Per usare il modello con training per prevedere le classi di immagini, il codice deve usare la risorsa di *previsione* (con l'endpoint e la chiave corrispondenti).
 
@@ -93,7 +92,7 @@ In alternativa, è possibile semplicemente trascinare il mouse intorno all'ogget
 
 1. Fare clic sull'icona delle *impostazioni* (&#9881;) in alto a destra nella pagina **Immagini training** nel portale di Visione personalizzata per visualizzare le impostazioni del progetto.
 2. In **Generale** (sulla sinistra) prendere nota del valore di **ID progetto** che identifica in modo univoco questo progetto.
-3. Sulla destra, notare che in **Risorse** sono visualizzati i dettagli relativi alla risorsa di *training*, inclusi la chiave e l'endpoint. È anche possibile ottenere queste informazioni visualizzando la risorsa nel portale di Azure.
+3. A destra, in **Risorse** osservare la chiave e l'endpoint. Questi dati sono relativi alla risorsa di *training*. È anche possibile ottenere queste informazioni visualizzando la risorsa nel portale di Azure.
 4. Nella cartella **18-object-detection** in Visual Studio Code espandere la cartella **C-Sharp** o **Python** in base al linguaggio scelto.
 5. Fare clic con il pulsante destro del mouse sulla cartella **train-detector** e aprire un terminale integrato. Installare quindi il pacchetto Training di Visione personalizzata eseguendo il comando appropriato per il linguaggio scelto:
 
@@ -113,7 +112,7 @@ pip install azure-cognitiveservices-vision-customvision==3.1.0
     - **C#** : appsettings.json
     - **Python**: .env
 
-    Aprire il file di configurazione e aggiornare i valori di configurazione in esso contenuti in modo che corrispondano all'endpoint e alla chiave per la risorsa di *training* di Visione personalizzata e all'ID progetto per il progetto di classificazione creato in precedenza. Salvare le modifiche.
+    Aprire il file di configurazione e aggiornare i valori di configurazione in esso contenuti in modo che corrispondano all'endpoint e alla chiave per la risorsa di *training* di Visione personalizzata e all'ID del progetto di rilevamento oggetti creato in precedenza. Salvare le modifiche.
 
 7. Nella cartella **train-detector** aprire **tagged-images.json** ed esaminare il codice JSON in esso contenuto. Il codice JSON definisce un elenco di immagini, ognuna delle quali contiene una o più aree con tag. Ogni area con tag include un nome di tag e le coordinate top e left, nonché le dimensioni di larghezza e altezza del rettangolo delimitatore contenente l'oggetto con tag.
 
@@ -162,9 +161,9 @@ A questo punto è possibile pubblicare il modello con training per poterlo usare
 
 1. Nella pagina **Prestazioni** del portale di Visione personalizzata fare clic su **&#128504; Pubblica** per pubblicare il modello con training con le impostazioni seguenti:
     - **Nome del modello**: fruit-detector
-    - **Risorsa di previsione**: *la risorsa di **previsione** creata in precedenza (<u>non</u> la risorsa di training)* .
+    - **Risorsa stima**: *la risorsa di **stima** creata in precedenza, che termina con "-Prediction" (<u>non</u> la risorsa di training)* .
 2. In alto a sinistra nella pagina **Impostazioni progetto** fare clic sull'icona *Projects Gallery* (Raccolta progetti) (&#128065;) per tornare alla pagina iniziale del portale di Visione personalizzata in cui è ora elencato il progetto appena creato.
-3. In alto a destra nella pagina iniziale del portale di Visione personalizzata fare clic sull'icona delle *impostazioni* (&#9881;) per visualizzare le impostazioni del servizio Visione personalizzata. In **Risorse** individuare la risorsa di *previsione* (<u>non</u> la risorsa di training) per determinare i valori di **Chiave** ed **Endpoint**. È anche possibile ottenere queste informazioni visualizzando la risorsa nel portale di Azure.
+3. In alto a destra nella pagina iniziale del portale di Visione personalizzata fare clic sull'icona delle *impostazioni* (&#9881;) per visualizzare le impostazioni del servizio Visione personalizzata. In **Risorse** individuare quindi la risorsa di *stima* che termina con "-Prediction" (<u>non</u> la risorsa di training) per determinare i relativi valori di **Chiave** ed **Endpoint**. È anche possibile ottenere queste informazioni visualizzando la risorsa nel portale di Azure.
 
 ## <a name="use-the-image-classifier-from-a-client-application"></a>Usare il classificatore di immagini da un'applicazione client
 

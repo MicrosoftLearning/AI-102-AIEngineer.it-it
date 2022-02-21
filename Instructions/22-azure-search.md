@@ -2,12 +2,12 @@
 lab:
   title: Creare una soluzione di Ricerca cognitiva di Azure
   module: Module 12 - Creating a Knowledge Mining Solution
-ms.openlocfilehash: 38d5d50ba7e906ee0842a076ec08ad1e92d10293
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: bba5786ed34cbbe806c74e2b2eec6286cb92554b
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625850"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801377"
 ---
 # <a name="create-an-azure-cognitive-search-solution"></a>Creare una soluzione di Ricerca cognitiva di Azure
 
@@ -111,7 +111,7 @@ Una volta caricati i documenti, è possibile creare una soluzione di ricerca ind
     - **Dati da estrarre**: contenuto e metadati
     - **Modalità di analisi**: impostazione predefinita
     - **Stringa di connessione**: *selezionare **Scegliere una connessione esistente**, selezionare quindi l'account di archiviazione e infine il contenitore **margies** creato dallo script UploadDocs.cmd*.
-    - **Autenticazione con identità gestita**: non selezionato
+    - **Autenticazione identità gestita**: Nessuna
     - **Nome contenitore**: margies
     - **Cartella BLOB**: *lasciare vuoto questo campo*
     - **Descrizione**: brochure e recensioni nel sito Web di Margie's Travel.
@@ -134,7 +134,7 @@ Una volta caricati i documenti, è possibile creare una soluzione di ricerca ind
 
 6. Controllare le selezioni, perché può essere difficile modificarle in un secondo momento. Procedere quindi al passaggio successivo: *Personalizza indice di destinazione*.
 7. Modificare il **Nome indice** in **margies-index**.
-8. Assicurarsi che la **Chiave** sia impostata su **metadata_storage_path** e lasciare vuoti i campi **Nome dello strumento suggerimenti** e **Modalità di ricerca**.
+8. Assicurarsi che il valore di **Chiave** sia impostato su **metadata_storage_path**, lasciare vuoto il campo **Nome dello strumento suggerimenti** e lasciare l'impostazione predefinita per **Modalità di ricerca**.
 9. Apportare le modifiche seguenti ai campi dell'indice, lasciando in tutti gli altri campi le impostazioni predefinite (**IMPORTANTE**: potrebbe essere necessario scorrere verso destra per visualizzare l'intera tabella).
 
     | Nome del campo | Recuperabile | Filtrabile | Sortable | Con facet | Ricercabile |
@@ -219,7 +219,7 @@ Anche se è possibile usare il portale per creare e modificare soluzioni di rice
 
     ```
     {
-        "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
+        "@odata.type": "#Microsoft.Skills.Text.V3.SentimentSkill",
         "defaultLanguageCode": "en",
         "name": "get-sentiment",
         "description": "New skill to evaluate sentiment",
@@ -236,14 +236,14 @@ Anche se è possibile usare il portale per creare e modificare soluzioni di rice
         ],
         "outputs": [
             {
-                "name": "score",
-                "targetName": "sentimentScore"
+                "name": "sentiment",
+                "targetName": "sentimentLabel"
             }
         ]
     }
     ```
 
-La nuova competenza è denominata **get-sentiment** e, per ogni livello **document** di un documento, valuterà il testo trovato nel campo **merged_content** del documento in fase di indicizzazione, che include il contenuto di origine e l'eventuale testo estratto dalle immagini nel contenuto. Usa la **lingua** estratta del documento (l'impostazione predefinita è l'inglese) e stima un punteggio per il sentiment del contenuto. Il punteggio viene quindi restituito come nuovo campo denominato **sentimentScore**.
+La nuova competenza è denominata **get-sentiment** e, per ogni livello **document** di un documento, valuterà il testo trovato nel campo **merged_content** del documento in fase di indicizzazione, che include il contenuto di origine e l'eventuale testo estratto dalle immagini nel contenuto. Usa la **lingua** estratta del documento (l'impostazione predefinita è l'inglese) e stima un'etichetta per il sentiment del contenuto. Il valore per l'etichetta del sentiment può essere "positive", "negative", "neutral" o "mixed". L'etichetta viene quindi restituita come nuovo campo denominato **sentimentLabel**.
 
 6. Salvare le modifiche apportate a **skillset.json**.
 
@@ -256,7 +256,7 @@ La nuova competenza è denominata **get-sentiment** e, per ogni livello **docume
     ```
     {
         "name": "sentiment",
-        "type": "Edm.Double",
+        "type": "Edm.String",
         "facetable": false,
         "filterable": true,
         "retrievable": true,
@@ -290,11 +290,11 @@ La nuova competenza è denominata **get-sentiment** e, per ogni livello **docume
 
 Per tutti gli altri campi di metadati e contenuto nel documento di origine viene eseguito il mapping implicito a campi con lo stesso nome nell'indice.
 
-4. Esaminare la sezione **ouputFieldMappings** che esegue il mapping degli output delle competenze nel set di competenze ai campi dell'indice. La maggior parte di queste opzioni riflette le scelte effettuate nell'interfaccia utente, ma è stato aggiunto il mapping seguente dal valore **sentimentScore** estratto dalla competenza sentiment al campo **sentiment** aggiunto all'indice:
+4. Esaminare la sezione **ouputFieldMappings** che esegue il mapping degli output delle competenze nel set di competenze ai campi dell'indice. La maggior parte di queste opzioni riflette le scelte effettuate nell'interfaccia utente, ma è stato aggiunto il mapping seguente dal valore **sentimentLabel** estratto dalla competenza sentiment al campo **sentiment** aggiunto all'indice:
 
     ```
     {
-        "sourceFieldName": "/document/sentimentScore",
+        "sourceFieldName": "/document/sentimentLabel",
         "targetFieldName": "sentiment"
     }
     ```
@@ -318,10 +318,10 @@ Per tutti gli altri campi di metadati e contenuto nel documento di origine viene
 2. Nella casella **Stringa di query** di Esplora ricerche immettere la stringa di query seguente e quindi selezionare **Cerca**.
 
     ```
-    search=London&$select=url,sentiment,keyphrases&$filter=metadata_author eq 'Reviewer' and sentiment gt 0.5
+    search=London&$select=url,sentiment,keyphrases&$filter=metadata_author eq 'Reviewer' and sentiment eq 'positive'
     ```
 
-    Questa query recupera l'**URL**, il **sentiment** e le **keyphrase** per tutti i documenti che citano *Londra*, creati dal *revisore*, che hanno un punteggio del **sentiment** maggiore di *0,5*; in altre parole, recensioni positive che citano Londra.
+    La query recupera gli elementi **url**, **sentiment** e **keyphrases** per tutti i documenti in cui è presente la parola *London*, il cui autore è *Reviewer* e che hanno un'etichetta di **sentiment** equivalente a "positive" (in altre parole, recensioni positive che parlano di Londra)
 
 3. Chiudere la pagina **Esplora ricerche** per tornare alla pagina **Panoramica**.
 
@@ -396,7 +396,7 @@ L'app Web include già il codice per elaborare ed eseguire il rendering dei risu
         - Visualizza il campo **metadata_storage_name** (nome file) come collegamento all'indirizzo nel campo **url**.
         - Visualizza *evidenziazioni* per i termini di ricerca trovati nei campi **merged_content** e **imageCaption** per mostrare i termini di ricerca nel contesto.
         - Visualizza i campi **metadata_author**, **metadata_storage_size**, **metadata_storage_last_modified** e **language**.
-        - Indica il **sentiment** usando un'emoticon (&#128578; per punteggi maggiori o uguali a 0,5 e &#128577; per punteggi minori di 0,5).
+        - Visualizzare l'etichetta del **sentiment** per il documento. Il valore può essere "positive", "negative", "neutral" o "mixed".
         - Visualizza le prime cinque **keyphrase** (se presenti).
         - Visualizza le prime cinque **posizioni** (se presenti).
         - Visualizza i primi cinque **imageTag** (se presenti).
@@ -424,7 +424,7 @@ L'app Web include già il codice per elaborare ed eseguire il rendering dei risu
     - Un *filtro* basato su un valore del facet per il campo **metadata_author**. Questo dimostra come usare i campi *con facet* per restituire un elenco di *facet*: campi con un piccolo set di valori discreti che possono essere visualizzati come possibili valori del filtro nell'interfaccia utente.
     - La possibilità di *ordinare* i risultati in base a un campo e a una direzione di ordinamento specificati (crescente o decrescente). L'ordine predefinito si basa *pertinenza*, che viene calcolata come valore **search.score()** in base a un *profilo di punteggio* che valuta la frequenza e l'importanza dei termini di ricerca nei campi dell'indice.
 6. Selezionare il filtro **Revisore** e l'opzione di ordinamento **Da positivo a negativo**, quindi **Affina risultati**.
-7. Si noti che i risultati vengono filtrati in modo da includere solo le recensioni e vengono ordinati per sentiment decrescente.
+7. Si noti che i risultati vengono filtrati in modo da includere solo le recensioni e ordinati in base all'etichetta del sentiment.
 8. Nella casella **Cerca** immettere una nuova ricerca di **hotel silenzioso a New York** ed esaminare i risultati.
 9. Provare i termini di ricerca seguenti:
     - **Torre di Londra**, si noti che questo termine viene identificato come *keyphrase* in alcuni documenti.
