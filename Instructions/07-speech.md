@@ -2,12 +2,12 @@
 lab:
   title: Riconoscimento e sintesi vocale
   module: Module 4 - Building Speech-Enabled Applications
-ms.openlocfilehash: 9867905b0189fa5932dba02cd0815817171e4928
-ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
+ms.openlocfilehash: 4f65f068cab76299f838153d32a2d4e8979a1253
+ms.sourcegitcommit: 3374bf6b03869daf624f3916bc34510fcbe580e0
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/12/2022
-ms.locfileid: "135801359"
+ms.lasthandoff: 02/18/2022
+ms.locfileid: "139088439"
 ---
 # <a name="recognize-and-synthesize-speech"></a>Riconoscimento e sintesi vocale
 
@@ -38,12 +38,12 @@ Se non è già disponibile nella sottoscrizione, sarà necessario effettuare il 
 1. Aprire il portale di Azure all'indirizzo `https://portal.azure.com` ed eseguire l'accesso usando l'account Microsoft associato alla sottoscrizione di Azure.
 2. Selezionare il pulsante **&#65291;Crea una risorsa**, cercare *Servizi cognitivi* e creare una risorsa di **Servizi cognitivi** con le impostazioni seguenti:
     - **Sottoscrizione**: *la propria sottoscrizione di Azure*
-    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, si potrebbe non essere autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
+    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, è possibile che non si sia autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
     - **Area**: *scegliere una qualsiasi area disponibile*
     - **Nome**: *immettere un nome univoco*
     - **Piano tariffario**: Standard S0
 3. Selezionare le caselle di controllo necessarie e creare la risorsa.
-4. Attendere il completamento della distribuzione e quindi visualizzare i relativi dettagli.
+4. Attendere il completamento della distribuzione e quindi visualizzare i dettagli della distribuzione.
 5. Al termine della distribuzione, passare alla risorsa e visualizzare la rispettiva pagina **Chiavi ed endpoint**. Nella procedura successiva sarà necessario usare una delle chiavi e la posizione in cui è stato effettuato il provisioning del servizio, disponibili in questa pagina.
 
 ## <a name="prepare-to-use-the-speech-service"></a>Preparare l'uso del servizio Voce
@@ -350,7 +350,7 @@ L'applicazione dell'orologio vocale usa una voce predefinita, che è possibile m
 
     ```C#
     // Configure speech synthesis
-    speechConfig.SpeechSynthesisVoiceName = "en-GB-LibbyNeural"; // add this
+    speechConfig.SpeechSynthesisVoiceName = "en-GB-LibbyNeural"; // change this
     using SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
     ```
     
@@ -358,7 +358,7 @@ L'applicazione dell'orologio vocale usa una voce predefinita, che è possibile m
     
     ```Python
     # Configure speech synthesis
-    speech_config.speech_synthesis_voice_name = 'en-GB-LibbyNeural' # add this
+    speech_config.speech_synthesis_voice_name = 'en-GB-LibbyNeural' # change this
     speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
     ```
 
