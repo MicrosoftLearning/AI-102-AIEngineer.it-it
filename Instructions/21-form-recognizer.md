@@ -2,12 +2,12 @@
 lab:
   title: Estrarre dati dai moduli
   module: Module 11 - Reading Text in Images and Documents
-ms.openlocfilehash: e2181d06b7dbf14bb5ea2a850eeb39d80a575f61
-ms.sourcegitcommit: 254d3fe43a77d925ba3bfb81daae737ec8203bfa
+ms.openlocfilehash: 99d450eb777229f573de9a7231c773e3c103efd9
+ms.sourcegitcommit: 1807a2fd95d9818d27b8c34c0ad041d844eea806
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/07/2021
-ms.locfileid: "133893548"
+ms.lasthandoff: 03/08/2022
+ms.locfileid: "139548573"
 ---
 # <a name="extract-data-from-forms"></a>Estrarre dati dai moduli 
 
@@ -34,7 +34,7 @@ Per usare il servizio Riconoscimento modulo è necessaria una risorsa di Riconos
 
 2. Selezionare il pulsante **&#65291;Crea una risorsa**, cercare *Riconoscimento modulo* e creare una risorsa di **Riconoscimento modulo** con le impostazioni seguenti:
     - **Sottoscrizione**: *la propria sottoscrizione di Azure*
-    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, si potrebbe non essere autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
+    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, è possibile che non si sia autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
     - **Area**: *scegliere una qualsiasi area disponibile*
     - **Nome**: *immettere un nome univoco*
     - **Piano tariffario**: F0
@@ -285,7 +285,7 @@ python test-model.py
     
 3. Visualizzare l'output e osservare come l'output per il modello con training **con** etichette fornisce nomi di campo come "CompanyPhoneNumber" e "DatedAs" a differenza dell'output del modello con training **senza** etichette, che ha generato un output di field-1, field-2 e così via.  
 
-Anche se il codice del programma per il training di un modello _con_ etichette potrebbe non differire notevolmente dal codice per il training _senza_ etichette, la scelta di uno rispetto all'altro _modifica_ le esigenze di pianificazione del progetto. Per eseguire il training con le etichette, è necessario [creare i file con etichetta](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool?tabs=v2-0). La scelta del processo di training può anche produrre modelli diversi, che a loro volta possono influire sui processi downstream in base ai campi restituiti dal modello e alla sicurezza dei valori restituiti. 
+Anche se il codice del programma per il training di un modello _con_ etichette potrebbe non differire notevolmente dal codice per il training _senza_ etichette, la scelta di uno rispetto all'altro _modifica_ le esigenze di pianificazione del progetto. Per eseguire il training con le etichette, è necessario [creare i file con etichetta](https://docs.microsoft.com/azure/applied-ai-services/form-recognizer/quickstarts/try-sample-label-tool). La scelta del processo di training può anche produrre modelli diversi, che a loro volta possono influire sui processi downstream in base ai campi restituiti dal modello e alla sicurezza dei valori restituiti. 
 
 ## <a name="more-information"></a>Altre informazioni
 
