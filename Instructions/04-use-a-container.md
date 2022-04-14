@@ -2,12 +2,12 @@
 lab:
   title: Usare un contenitore di Servizi cognitivi
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: c222f5526a09ee1ae2aad3732fe2e29eb14c12ef
-ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
+ms.openlocfilehash: 3c9e51562e4fb93809855e3ae8707d6aeaf83c97
+ms.sourcegitcommit: e9fc70625e09e4f4585a08e1668597f5d82616a0
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/12/2022
-ms.locfileid: "135801341"
+ms.lasthandoff: 04/11/2022
+ms.locfileid: "141605464"
 ---
 # <a name="use-a-cognitive-services-container"></a>Usare un contenitore di Servizi cognitivi
 
@@ -33,12 +33,12 @@ Se non è già disponibile nella sottoscrizione, sarà necessario effettuare il 
 1. Aprire il portale di Azure all'indirizzo `https://portal.azure.com` ed eseguire l'accesso usando l'account Microsoft associato alla sottoscrizione di Azure.
 2. Selezionare il pulsante **&#65291;Crea una risorsa**, cercare *Servizi cognitivi* e creare una risorsa di **Servizi cognitivi** con le impostazioni seguenti:
     - **Sottoscrizione**: *la propria sottoscrizione di Azure*
-    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, si potrebbe non essere autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
+    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, è possibile che non si sia autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
     - **Area**: *scegliere una qualsiasi area disponibile*
     - **Nome**: *immettere un nome univoco*
     - **Piano tariffario**: Standard S0
 3. Selezionare le caselle di controllo necessarie e creare la risorsa.
-4. Attendere il completamento della distribuzione e quindi visualizzare i relativi dettagli.
+4. Attendere il completamento della distribuzione e quindi visualizzare i dettagli della distribuzione.
 5. Al termine della distribuzione, passare alla risorsa e visualizzare la rispettiva pagina **Chiavi ed endpoint**. Nella procedura successiva saranno necessari l'endpoint e una delle chiavi indicate in questa pagina.
 
 ## <a name="deploy-and-run-a-text-analytics-container"></a>Distribuire ed eseguire un contenitore Analisi del testo
@@ -53,7 +53,6 @@ Molte API dei servizi cognitivi di uso comune sono disponibili nelle immagini de
         - **Nome contenitore**: *immettere un nome univoco*
         - **Area**: *scegliere una qualsiasi area disponibile*
         - **Origine immagine**: Docker Hub o altro registro
-        - **Tipo di immagine**: Pubblico
         - **Immagine**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language:1.1.013570001-amd64`
         - **Tipo di sistema operativo**: Linux
         - **Dimensioni**: 1 vCPU, 4 GB di memoria
