@@ -2,12 +2,12 @@
 lab:
   title: Estrarre dati dai moduli
   module: Module 11 - Reading Text in Images and Documents
-ms.openlocfilehash: 99d450eb777229f573de9a7231c773e3c103efd9
-ms.sourcegitcommit: 1807a2fd95d9818d27b8c34c0ad041d844eea806
+ms.openlocfilehash: 45915cfcb832635b668d9b22da931c2b467c7452
+ms.sourcegitcommit: 29a684646784fe4f7370343b6c005728a953770d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/08/2022
-ms.locfileid: "139548573"
+ms.lasthandoff: 05/04/2022
+ms.locfileid: "144557831"
 ---
 # <a name="extract-data-from-forms"></a>Estrarre dati dai moduli 
 
@@ -45,7 +45,7 @@ Per usare il servizio Riconoscimento modulo è necessaria una risorsa di Riconos
 
 ## <a name="gather-documents-for-training"></a>Raccogliere documenti per il training
 
-![Immagine di una fattura.](../21-custom-form/sample-forms/Form_1.jpg)  
+![Immagine di una fattura.](../21-custom-form/sample-forms/Form_1.png)  
 
 Si useranno i moduli di esempio della cartella **21-custom-form/sample-forms** in questo repository, che contengono tutti i file necessari per eseguire il training di un modello senza etichette e di un altro modello con etichette.
 
