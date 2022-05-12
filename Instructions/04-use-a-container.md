@@ -2,12 +2,12 @@
 lab:
   title: Usare un contenitore di Servizi cognitivi
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: 3c9e51562e4fb93809855e3ae8707d6aeaf83c97
-ms.sourcegitcommit: e9fc70625e09e4f4585a08e1668597f5d82616a0
+ms.openlocfilehash: 244ab1ef3754e668d64996dece9711682651691d
+ms.sourcegitcommit: 29a684646784fe4f7370343b6c005728a953770d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/11/2022
-ms.locfileid: "141605464"
+ms.lasthandoff: 05/04/2022
+ms.locfileid: "144557841"
 ---
 # <a name="use-a-cognitive-services-container"></a>Usare un contenitore di Servizi cognitivi
 
@@ -52,7 +52,8 @@ Molte API dei servizi cognitivi di uso comune sono disponibili nelle immagini de
         - **Gruppo di risorse**: *scegliere il gruppo di risorse contenente la risorsa di Servizi cognitivi*
         - **Nome contenitore**: *immettere un nome univoco*
         - **Area**: *scegliere una qualsiasi area disponibile*
-        - **Origine immagine**: Docker Hub o altro registro
+        - **Origine immagine**: Altro registro
+        - **Tipo di immagine**: Pubblico
         - **Immagine**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language:1.1.013570001-amd64`
         - **Tipo di sistema operativo**: Linux
         - **Dimensioni**: 1 vCPU, 4 GB di memoria
