@@ -2,12 +2,12 @@
 lab:
   title: Creare una soluzione di risposta alle domande
   module: Module 6 - Building a QnA Solution
-ms.openlocfilehash: 786d4c30b4b4f85b5c85a7a9b8d500a497bb832d
-ms.sourcegitcommit: 6c1ad9a67d6caadcfb7edb4f58e314eab306f720
+ms.openlocfilehash: 3fa849480f4b6f94aea758159de126aeb8bfb513
+ms.sourcegitcommit: 47e8de0c2ea379aac8bec96b7c599ffb74d1eee9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/09/2021
-ms.locfileid: "134463604"
+ms.lasthandoff: 02/22/2022
+ms.locfileid: "139132296"
 ---
 # <a name="create-a-question-answering-solution"></a>Creare una soluzione di risposta alle domande
 
@@ -95,13 +95,13 @@ La knowledge base è stata popolata con coppie di domanda e risposta dalle doman
 
 6. Nella risposta immessa per la domanda sulla certificazione selezionare **&#65291; Add follow-up prompts** (Aggiungi richieste di completamento).
 7. Nella finestra di dialogo **Richiesta di completamento** immettere le impostazioni seguenti e quindi fare clic su **Add prompt** (Aggiungi richiesta):
-    - **Text displayed in the prompt to the user** (Testo visualizzato nella richiesta all'utente): "Learn more about certification".
+    - **Text displayed in the prompt to the user**: `Learn more about certification`.
     - Selezionare **Create link to new pair** (Crea collegamento a nuova coppia) e immettere il testo seguente: `You can learn more about certification on the [Microsoft certification page](https://docs.microsoft.com/learn/certifications/).`
     - **Show in contextual flow only** (Mostra solo nel flusso contestuale): opzione selezionata. *Questa opzione assicura che la risposta venga restituita solo nel contesto di una domanda di completamento dalla domanda di certificazione originale.*
 
 ## <a name="train-and-test-the-knowledge-base"></a>Eseguire il training e il test della knowledge base
 
-Ora che hai una knowledge base, puoi testarla nel portale di QnA Maker.
+Ora che si ha una knowledge base, è possibile testarla in Language Studio.
 
 1. In alto a destra nella pagina fare clic su **Salva modifiche**.
 2. Dopo aver salvato le modifiche, fare clic su **Prova** per aprire il riquadro di test.
