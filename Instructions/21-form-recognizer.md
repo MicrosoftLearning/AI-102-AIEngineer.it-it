@@ -2,16 +2,16 @@
 lab:
   title: Estrarre dati dai moduli
   module: Module 11 - Reading Text in Images and Documents
-ms.openlocfilehash: 45915cfcb832635b668d9b22da931c2b467c7452
-ms.sourcegitcommit: 29a684646784fe4f7370343b6c005728a953770d
+ms.openlocfilehash: 3439c9d2d53fd0461b2fe35b095ea86d5ed3abaa
+ms.sourcegitcommit: da2617566698e889ff53426e6ddb58f42ccf9504
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2022
-ms.locfileid: "144557831"
+ms.lasthandoff: 05/05/2022
+ms.locfileid: "144776171"
 ---
 # <a name="extract-data-from-forms"></a>Estrarre dati dai moduli 
 
-Si supponga che un'azienda debba automatizzare un processo di immissione dei dati. Attualmente un dipendente potrebbe leggere manualmente un ordine di acquisto e immettere i dati in un database. Si vuole compilare un modello che userà Machine Learning per leggere il modulo e produrre dati strutturati che possono essere usati per aggiornare automaticamente un database.
+Si supponga che un'azienda richieda attualmente ai dipendenti di compilare manualmente i fogli degli ordini e di immettere i dati in un database. L'azienda ha richiesto di usare i servizi di intelligenza artificiale per migliorare il processo di immissione dei dati. Si decide di creare un modello di Machine Learning per leggere il modulo e produrre dati strutturati che possano essere usati per aggiornare automaticamente un database.
 
 **Riconoscimento modulo** è un servizio cognitivo che consente agli utenti di creare software di elaborazione dati automatizzata. Questo software può estrarre testo, coppie chiave/valore e tabelle dai documenti modulo usando il riconoscimento ottico dei caratteri (OCR). Riconoscimento modulo ha modelli predefiniti per il riconoscimento di fatture, ricevute e biglietti da visita. Il servizio offre anche la possibilità di eseguire il training di modelli personalizzati. Questo esercizio si concentrerà sulla creazione di modelli personalizzati.
 
@@ -28,7 +28,7 @@ Se non è già stato fatto, è necessario clonare il repository di codice per qu
 
 ## <a name="create-a-form-recognizer-resource"></a>Creare una risorsa di riconoscimento modulo
 
-Per usare il servizio Riconoscimento modulo è necessaria una risorsa di Riconoscimento modulo nella sottoscrizione di Azure. Si userà il portale di Azure per creare una risorsa.
+Per usare il servizio Riconoscimento modulo è necessaria una risorsa Riconoscimento modulo o Servizi cognitivi nella sottoscrizione di Azure. Si userà il portale di Azure per creare una risorsa.
 
 1.  Aprire il portale di Azure all'indirizzo `https://portal.azure.com` ed eseguire l'accesso usando l'account Microsoft associato alla sottoscrizione di Azure.
 
@@ -45,15 +45,15 @@ Per usare il servizio Riconoscimento modulo è necessaria una risorsa di Riconos
 
 ## <a name="gather-documents-for-training"></a>Raccogliere documenti per il training
 
-![Immagine di una fattura.](../21-custom-form/sample-forms/Form_1.png)  
+![Immagine di una fattura.](../21-custom-form/sample-forms/Form_1.jpg)  
 
-Si useranno i moduli di esempio della cartella **21-custom-form/sample-forms** in questo repository, che contengono tutti i file necessari per eseguire il training di un modello senza etichette e di un altro modello con etichette.
+Si useranno i moduli di esempio della cartella **21-custom-form/sample-forms** in questo repository, che contengono tutti i file necessari per eseguire il training di un modello e testarlo.
 
 1. In Visual Studio Code, nella cartella **21-custom-form** espandere la cartella **sample-forms**. Si noti che sono presenti file che terminano con **.json** e **.jpg** nella cartella.
 
-    Si useranno i file **.jpg** per eseguire il training del primo modello _senza_ etichette.  
+    Si useranno i file con estensione **jpg** per eseguire il training del modello.  
 
-    Successivamente si useranno i file che terminano con **.json** e **.jpg** per eseguire il training del secondo modello _con_ etichette. I **file .json** sono stati generati automaticamente e contengono informazioni sull'etichetta. Per eseguire il training con le etichette, è necessario avere i file di informazioni sulle etichette nel contenitore di archiviazione BLOB insieme ai moduli. 
+    I **file .json** sono stati generati automaticamente e contengono informazioni sull'etichetta. I file verranno caricati nel contenitore di archiviazione BLOB insieme ai moduli. 
 
 2. Tornare al portale di Azure all'indirizzo [https://portal.azure.com](https://portal.azure.com).
 
@@ -106,16 +106,20 @@ setup
 
 15. Nel portale di Azure aggiornare il gruppo di risorse e verificare che contenga l'account di archiviazione di Azure appena creato. Aprire l'account di archiviazione e nel riquadro a sinistra selezionare **Browser archiviazione (anteprima)** . Nel browser archiviazione espandere **CONTENITORI BLOB** e selezionare il contenitore **sampleforms** per verificare che i file siano stati caricati dalla cartella **21-custom-form/sample-forms** locale.
 
-## <a name="train-a-model-without-labels"></a>Eseguire il training di un modello *senza* etichette
+## <a name="train-a-model-using-the-form-recognizer-sdk"></a>Eseguire il training di un modello usando l'SDK di Riconoscimento modulo
 
-Si userà il Form Recognizer SDK per eseguire il training e il test di un modello personalizzato.  
+A questo punto si eseguirà il training di un modello usando i file **.jpg** e **.json**.
 
-> **Nota**: in questo esercizio è possibile scegliere se usare l'API dall'SDK **C#** o **Python**. Nella procedura seguente eseguire le azioni appropriate per il linguaggio scelto.
+1. Nella cartella **21-custom-form/sample-forms** in Visual Studio Code aprire **fields.json** ed esaminare il documento JSON in esso contenuto. Questo file definisce i campi di cui eseguire il training di un modello per l'estrazione dai moduli.
+2. Aprire **Form_1.jpg.labels.json** ed esaminare il codice JSON in esso contenuto. Questo file identifica il percorso e i valori per i campi denominati nel documento di training **Form_1.jpg**.
+3. Aprire **Form_1.jpg.ocr.json** ed esaminare il codice JSON in esso contenuto. Questo file contiene una rappresentazione JSON del layout del testo di **Form_1.jpg**, inclusa la posizione di tutte le aree di testo presenti nel modulo.
 
-1. Nella cartella **21-custom-form** in Visual Studio Code espandere la cartella **C-Sharp** o **Python** in base al linguaggio scelto.
-2. Fare clic con il pulsante destro del mouse sulla cartella **train-model** e aprire un terminale integrato.
+    *I file con le informazioni per i campi sono stati forniti in questo esercizio. Per i progetti personali è possibile creare questi file con [Form Recognizer Studio](https://formrecognizer.appliedai.azure.com/studio). Durante l'uso dello strumento i file con le informazioni per i campi vengono creati e archiviati automaticamente nell'account di archiviazione connesso.*
 
-3. Installare quindi il pacchetto Riconoscimento modulo eseguendo il comando appropriato per il linguaggio scelto:
+4. Nella cartella **21-custom-form** in Visual Studio Code espandere la cartella **C-Sharp** o **Python** in base al linguaggio scelto.
+5. Fare clic con il pulsante destro del mouse sulla cartella **train-model** e aprire un terminale integrato.
+
+6. Installare quindi il pacchetto Riconoscimento modulo eseguendo il comando appropriato per il linguaggio scelto:
 
 **C#**
 
@@ -129,16 +133,16 @@ dotnet add package Azure.AI.FormRecognizer --version 3.0.0
 pip install azure-ai-formrecognizer==3.0.0
 ```
 
-3. Visualizzare i contenuti della cartella **train-model** e notare che include un file per le impostazioni di configurazione:
+7. Visualizzare i contenuti della cartella **train-model** e notare che include un file per le impostazioni di configurazione:
     - **C#** : appsettings.json
     - **Python**: .env
 
-4. Modificare il file di configurazione modificando le impostazioni in modo che riflettano:
+8. Modificare il file di configurazione modificando le impostazioni in modo che riflettano:
     - L'**endpoint** per la risorsa di Riconoscimento modulo.
     - Una **chiave** per la risorsa di Riconoscimento modulo.
     - L'**URI di firma di accesso condiviso** per il contenitore BLOB.
 
-5. Si noti che la cartella **train-model** contiene un file di codice per l'applicazione client:
+9. Si noti che la cartella **train-model** contiene un file di codice per l'applicazione client:
 
     - **C#** : Program.cs
     - **Python**: train-model.py
@@ -147,9 +151,13 @@ pip install azure-ai-formrecognizer==3.0.0
     - Gli spazi dei nomi del pacchetto installato vengono importati
     - La funzione **Main** recupera le impostazioni di configurazione e usa la chiave e l'endpoint per creare un **client** autenticato.
     - Il codice usa il client di training per eseguire il training di un modello usando le immagini nel contenitore di archiviazione BLOB, a cui si accede usando l'URI di firma di accesso condiviso generato.
-    - Il training viene eseguito con un parametro per indicare che le etichette di training <u>non</u> devono essere usate. Riconoscimento modulo usa una tecnica *senza supervisione* per estrarre i campi dalle immagini del modulo.
 
-6. Tornare al terminale integrato per la cartella **train-model**, quindi immettere il comando seguente per eseguire il programma:
+10. Nella cartella **train-model** aprire il file di codice per l'applicazione di training:
+
+    - **C#** : Program.cs
+    - **Python**: train-model.py
+
+11. Tornare al terminale integrato per la cartella **train-model**, quindi immettere il comando seguente per eseguire il programma:
 
 **C#**
 
@@ -163,16 +171,15 @@ dotnet run
 python train-model.py
 ```
 
-7. Attendere il completamento del programma. Esaminare quindi l'output del modello e trovare l'ID modello nel terminale. Questo valore sarà necessario nella procedura successiva, quindi non chiudere il terminale.
+12. Attendere la fine del programma, quindi esaminare l'output del modello.
+13. Prendere nota dell'ID modello nell'output del terminale. Sarà necessario per la parte successiva del lab. 
 
-## <a name="test-the-model-created-without-labels"></a>Testare il modello creato senza etichette
-
-A questo punto è possibile usare il modello con training. Si noti come sia stato eseguito il training del modello usando i file da un URI del contenitore di archiviazione. È anche possibile eseguire il training del modello usando file locali. Analogamente è possibile testare il modello usando moduli da un URI o da file locali. Il modello di modulo verrà testato con un file locale.
-
-Dopo aver ottenuto l'ID modello, è possibile usarlo da un'applicazione client. Anche questa volta, è possibile scegliere di usare **C#** o **Python**.
+## <a name="test-your-custom-form-recognizer-model"></a>Testare il modello di Riconoscimento modulo personalizzato 
 
 1. Nella cartella **21-custom-form**, nella sottocartella del linguaggio preferito (**C-Sharp** o **Python**), espandere la cartella **test-model**.
-2. Fare clic con il pulsante destro del mouse sulla cartella **test-model** e aprire un terminale integrato. Sono ora disponibili almeno due terminali **cmd** ed è possibile passare da un terminale all'altro usando l'elenco a discesa nel riquadro Terminale.
+
+2. Fare clic con il pulsante destro del mouse sulla cartella **test-model** e scegliere **apri un terminale integrato**.
+
 3. Nel terminale per la cartella **test-model** installare il pacchetto Riconoscimento modulo eseguendo il comando appropriato per il linguaggio scelto:
 
 **C#**
@@ -192,13 +199,14 @@ pip install azure-ai-formrecognizer==3.0.0
 4. Nella cartella **test-model** modificare il file di configurazione (**appsettings.json** o **.env**, a seconda delle preferenze di linguaggio) per aggiungere i valori seguenti:
     - L'endpoint di Riconoscimento modulo.
     - La chiave di Riconoscimento modulo.
-    - L'ID modello generato durante il training del modello. È possibile trovarlo riportando il terminale alla console **cmd** per la cartella **train-model**.
+    - L'ID modello generato durante il training del modello. È possibile trovarlo riportando il terminale alla console **cmd** per la cartella **train-model**. **Salvare** le modifiche.
 
 5. Nella cartella **test-model** aprire il file di codice per l'applicazione client (*Program.cs* per C#, *test-model.py* per Python) ed esaminare il codice in esso contenuto, notando i dettagli seguenti:
     - Gli spazi dei nomi del pacchetto installato vengono importati
     - La funzione **Main** recupera le impostazioni di configurazione e usa la chiave e l'endpoint per creare un **client** autenticato.
     - Il client viene quindi usato per estrarre i campi e i valori del modulo dall'immagine **test1.jpg**.
     
+
 6. Tornare al terminale integrato per la cartella **test-model**, quindi immettere il comando seguente per eseguire il programma:
 
 **C#**
@@ -212,80 +220,8 @@ dotnet run
 ```
 python test-model.py
 ```
-
-7. Visualizzare l'output e notare i punteggi di attendibilità della stima. Si noti che l'output fornisce nomi di campo field-1, field-2 e così via. 
-
-## <a name="train-a-model-with-labels-using-the-client-library"></a>Eseguire il training di un modello *con* etichette usando la libreria client
-
-Si supponga che dopo aver eseguito il training di un modello con i moduli della fattura si voglia vedere come viene eseguito il training di un modello sui dati con etichetta. Quando si è eseguito il training di un modello senza etichette, sono stati usati moduli **.jpg** del contenitore BLOB di Azure. A questo punto si eseguirà il training di un modello usando i file **.jpg** e **.json**.
-
-1. Nella cartella **21-custom-form/sample-forms** in Visual Studio Code aprire **fields.json** ed esaminare il documento JSON in esso contenuto. Questo file definisce i campi di cui eseguire il training di un modello per l'estrazione dai moduli.
-2. Aprire **Form_1.jpg.labels.json** ed esaminare il codice JSON in esso contenuto. Questo file identifica il percorso e i valori per i campi denominati nel documento di training **Form_1.jpg**.
-3. Aprire **Form_1.jpg.ocr.json** ed esaminare il codice JSON in esso contenuto. Questo file contiene una rappresentazione JSON del layout del testo di **Form_1.jpg**, inclusa la posizione di tutte le aree di testo presenti nel modulo.
-
-    *In questo esercizio sono stati forniti i file di informazioni sul campo. Per i propri progetti, è possibile creare questi file usando lo [strumento di etichettatura di esempio](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/label-tool). Quando si usa lo strumento, i file di informazioni sul campo vengono creati e archiviati automaticamente nell'account di archiviazione connesso.*
-
-4. Nella cartella **train-model** aprire il file di codice per l'applicazione di training:
-
-    - **C#** : Program.cs
-    - **Python**: train-model.py
-
-5. Nella funzione **Main** trovare il commento **Train model** e modificarlo come illustrato per modificare il processo di training in modo che le etichette vengano usate:
-
-**C#**
-
-```C#
-// Train model 
-CustomFormModel model = await trainingClient
-.StartTrainingAsync(new Uri(trainingStorageUri), useTrainingLabels: true)
-.WaitForCompletionAsync();
-```
-
-**Python**
-
-```Python
-# Train model 
-poller = form_training_client.begin_training(trainingDataUrl, use_training_labels=True)
-model = poller.result()
-```
-
-6. Tornare al terminale integrato per la cartella **train-model**, quindi immettere il comando seguente per eseguire il programma:
-
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python train-model.py
-```
-
-10. Attendere la fine del programma, quindi esaminare l'output del modello.
-11. Si noti il nuovo ID modello nell'output del terminale. 
-
-## <a name="test-the-model-created-with-labels"></a>Testare il modello creato con etichette
-
-1. Nella cartella **test-model** modificare il file di configurazione (**appsettings.json** o **.env**, a seconda delle preferenze di linguaggio) e aggiornarlo per riflettere il nuovo ID modello. Salvare le modifiche.
-2. Tornare al terminale integrato per la cartella **test-model**, quindi immettere il comando seguente per eseguire il programma:
-
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python test-model.py
-```
     
-3. Visualizzare l'output e osservare come l'output per il modello con training **con** etichette fornisce nomi di campo come "CompanyPhoneNumber" e "DatedAs" a differenza dell'output del modello con training **senza** etichette, che ha generato un output di field-1, field-2 e così via.  
-
-Anche se il codice del programma per il training di un modello _con_ etichette potrebbe non differire notevolmente dal codice per il training _senza_ etichette, la scelta di uno rispetto all'altro _modifica_ le esigenze di pianificazione del progetto. Per eseguire il training con le etichette, è necessario [creare i file con etichetta](https://docs.microsoft.com/azure/applied-ai-services/form-recognizer/quickstarts/try-sample-label-tool). La scelta del processo di training può anche produrre modelli diversi, che a loro volta possono influire sui processi downstream in base ai campi restituiti dal modello e alla sicurezza dei valori restituiti. 
+7. Visualizzare l'output e notare che l'output per il modello include nomi di campi come "CompanyPhoneNumber" e "DatedAs".   
 
 ## <a name="more-information"></a>Altre informazioni
 
