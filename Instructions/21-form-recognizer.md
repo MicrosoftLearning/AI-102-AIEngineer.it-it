@@ -2,12 +2,12 @@
 lab:
   title: Estrarre dati dai moduli
   module: Module 11 - Reading Text in Images and Documents
-ms.openlocfilehash: 3439c9d2d53fd0461b2fe35b095ea86d5ed3abaa
-ms.sourcegitcommit: da2617566698e889ff53426e6ddb58f42ccf9504
+ms.openlocfilehash: 540fdc49b9efcf335d43cdd7a6db405c255cd058
+ms.sourcegitcommit: de1f38bbe53ec209b42cd89516813773e2f3479b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/05/2022
-ms.locfileid: "144776171"
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145040702"
 ---
 # <a name="extract-data-from-forms"></a>Estrarre dati dai moduli 
 
@@ -196,18 +196,32 @@ pip install azure-ai-formrecognizer==3.0.0
 
 *Questa operazione non è strettamente necessaria se in precedenza è stato usato pip per installare il pacchetto nell'ambiente Python, ma è opportuno assicurarsi che sia installato.*
 
-4. Nella cartella **test-model** modificare il file di configurazione (**appsettings.json** o **.env**, a seconda delle preferenze di linguaggio) per aggiungere i valori seguenti:
+4. Nello stesso terminale per la cartella **test-model** installare la libreria Tabulate. In questo modo verrà fornito l'output in una tabella:
+
+**C#**
+
+```
+Install-Package Tabulate.NET -Version 1.0.5
+```
+
+**Python**
+
+```
+pip install tabulate
+```
+
+5. Nella cartella **test-model** modificare il file di configurazione (**appsettings.json** o **.env**, a seconda delle preferenze di linguaggio) per aggiungere i valori seguenti:
     - L'endpoint di Riconoscimento modulo.
     - La chiave di Riconoscimento modulo.
     - L'ID modello generato durante il training del modello. È possibile trovarlo riportando il terminale alla console **cmd** per la cartella **train-model**. **Salvare** le modifiche.
 
-5. Nella cartella **test-model** aprire il file di codice per l'applicazione client (*Program.cs* per C#, *test-model.py* per Python) ed esaminare il codice in esso contenuto, notando i dettagli seguenti:
+6. Nella cartella **test-model** aprire il file di codice per l'applicazione client (*Program.cs* per C#, *test-model.py* per Python) ed esaminare il codice in esso contenuto, notando i dettagli seguenti:
     - Gli spazi dei nomi del pacchetto installato vengono importati
     - La funzione **Main** recupera le impostazioni di configurazione e usa la chiave e l'endpoint per creare un **client** autenticato.
     - Il client viene quindi usato per estrarre i campi e i valori del modulo dall'immagine **test1.jpg**.
     
 
-6. Tornare al terminale integrato per la cartella **test-model**, quindi immettere il comando seguente per eseguire il programma:
+7. Tornare al terminale integrato per la cartella **test-model**, quindi immettere il comando seguente per eseguire il programma:
 
 **C#**
 
@@ -221,7 +235,7 @@ dotnet run
 python test-model.py
 ```
     
-7. Visualizzare l'output e notare che l'output per il modello include nomi di campi come "CompanyPhoneNumber" e "DatedAs".   
+8. Visualizzare l'output e notare che l'output per il modello include nomi di campi come "CompanyPhoneNumber" e "DatedAs".   
 
 ## <a name="more-information"></a>Altre informazioni
 
