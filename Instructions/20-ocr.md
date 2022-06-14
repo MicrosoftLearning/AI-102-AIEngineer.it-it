@@ -2,12 +2,12 @@
 lab:
   title: Leggere il testo nelle immagini
   module: Module 11 - Reading Text in Images and Documents
-ms.openlocfilehash: 0dc45d60e307769ebfde165201b97c4a3ff49675
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: 1199e4e4f44a98fc5f900fa1ad021384b56f0c2b
+ms.sourcegitcommit: e242452e8125a2622093980048f1e2cacb8b893d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625835"
+ms.lasthandoff: 05/25/2022
+ms.locfileid: "145757491"
 ---
 # <a name="read-text-in-images"></a>Leggere il testo nelle immagini
 
@@ -18,7 +18,7 @@ Il riconoscimento ottico dei caratteri (OCR) è un subset di Visione artificiale
 Se non è già stato fatto, è necessario clonare il repository di codice per questo corso:
 
 1. Avviare Visual Studio Code.
-2. Aprire il riquadro comandi (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale. Non è importante usare una cartella specifica.
+2. Aprire il riquadro comandi (MAIUSC+CTRL+P) ed eseguire un comando **Git: Clone** per clonare il repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in una cartella locale (non importa quale).
 3. Dopo la clonazione del repository, aprire la cartella in Visual Studio Code.
 4. Attendere il completamento dell'installazione di file aggiuntivi per supportare i progetti in codice C# nel repository.
 
@@ -31,7 +31,7 @@ Se non è già disponibile nella sottoscrizione, sarà necessario effettuare il 
 1. Aprire il portale di Azure all'indirizzo `https://portal.azure.com` ed eseguire l'accesso usando l'account Microsoft associato alla sottoscrizione di Azure.
 2. Selezionare il pulsante **&#65291;Crea una risorsa**, cercare *Servizi cognitivi* e creare una risorsa di **Servizi cognitivi** con le impostazioni seguenti:
     - **Sottoscrizione**: *la propria sottoscrizione di Azure*
-    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, si potrebbe non essere autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
+    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, è possibile che non si sia autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
     - **Area**: *scegliere una qualsiasi area disponibile*
     - **Nome**: *immettere un nome univoco*
     - **Piano tariffario**: Standard S0
@@ -213,7 +213,7 @@ python read-text.py
 
 ## <a name="use-the-read-api"></a>Usare l'API Lettura
 
-L'API **Lettura** usa un modello di riconoscimento del testo più recente rispetto all'API OCR e offre prestazioni migliori per le immagini più grandi che contengono molto testo. Supporta anche l'estrazione di testo da file *PDF* e può riconoscere sia testo stampato (in più lingue) che testo scritto a mano (in inglese).
+L'API **Lettura** usa un modello di riconoscimento del testo più recente rispetto all'API OCR e offre prestazioni migliori per le immagini più grandi che contengono molto testo. Supporta anche l'estrazione di testo da file *PDF* e può riconoscere sia testo stampato che testo scritto a mano in più lingue.
 
 L'API **Lettura** usa un modello di operazione asincrona, in cui viene inviata una richiesta per avviare il riconoscimento del testo e l'ID operazione restituito dalla richiesta può essere usato successivamente per controllare lo stato di avanzamento e recuperare i risultati.
 
@@ -300,7 +300,7 @@ python read-text.py
 
 6. Quando richiesto, immettere **2** e osservare l'output, ovvero il testo estratto dal documento.
 
-## <a name="read-handwritten-text"></a>Leggi il testo scritto a mano
+## <a name="read-handwritten-text"></a>Leggere il testo scritto a mano
 
 Oltre al testo stampato, l'API **lettura** può estrarre testo scritto a mano in inglese.
 

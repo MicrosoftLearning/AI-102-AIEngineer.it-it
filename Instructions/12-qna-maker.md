@@ -2,12 +2,12 @@
 lab:
   title: Creare una soluzione di risposta alle domande
   module: Module 6 - Building a QnA Solution
-ms.openlocfilehash: 3fa849480f4b6f94aea758159de126aeb8bfb513
-ms.sourcegitcommit: 47e8de0c2ea379aac8bec96b7c599ffb74d1eee9
+ms.openlocfilehash: 0a71dc2c0185c51d8ccf390afd780dd914366be0
+ms.sourcegitcommit: 45e075a4b45a914d378900b4c00451a530d813de
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/22/2022
-ms.locfileid: "139132296"
+ms.lasthandoff: 05/26/2022
+ms.locfileid: "145892513"
 ---
 # <a name="create-a-question-answering-solution"></a>Creare una soluzione di risposta alle domande
 
@@ -85,11 +85,11 @@ Per creare una knowledge base per la risposta alle domande nella risorsa del ser
 
 La knowledge base è stata popolata con coppie di domanda e risposta dalle domande frequenti di Microsoft Learn, a cui è stato aggiunto un set di coppie di domanda e risposta di *Chiacchiere* basate su conversazione. È possibile estendere la knowledge base aggiungendo altre coppie di domanda e risposta.
 
-1. Nel progetto **LearnFAQ** in Language Studio selezionare la pagina **Edit knowledge base** (Modifica knowledge base) per visualizzare le coppie di domande e risposte esistenti (se vengono visualizzati suggerimenti, leggerli e fare clic su **OK** per eliminarli oppure fare clic su **Ignora tutto**)
+1. Nel progetto **LearnFAQ** in Language Studio selezionare la pagina **Modifica knowledge base** per visualizzare le coppie di domande e risposte esistenti (se vengono visualizzati suggerimenti, leggerli e fare clic su **OK** per eliminarli oppure fare clic su **Ignora tutto**)
 2. Nella knowledge base selezionare **&#65291; Add question pair** (Aggiungi coppia domanda/risposta).
 3. Nella casella **Domanda** digitare `What is Microsoft certification?` e premere **INVIO**.
-4. Selezionare **&#65291; Aggiungi frasi alternative**, digitare `How can I demonstrate my Microsoft technology skills?` e premere **INVIO**.
-5. Nella casella **Risposta** digitare `The Microsoft Certified Professional program enables you to validate and prove your skills with Microsoft technologies.`, quindi premere **INVIO** e fare clic su **Invia** per aggiungere la domanda (inclusa la formulazione alternativa) e la risposta alla knowledge base.
+4. Selezionare **&#65291; Aggiungi frase alternativa**, digitare `How can I demonstrate my Microsoft technology skills?` e premere **INVIO**.
+5. Nella casella **Risposta** digitare `The Microsoft Certified Professional program enables you to validate and prove your skills with Microsoft technologies.` e quindi fare clic su **Invia** per aggiungere la domanda (inclusa la formulazione alternativa) e la risposta alla knowledge base.
 
     In alcuni casi, è opportuno consentire all'utente di porre un'ulteriore domanda in seguito alla risposta, in modo da creare una conversazione *a più turni* che consenta all'utente di perfezionare in modo iterativo la domanda per ottenere la risposta necessaria.
 

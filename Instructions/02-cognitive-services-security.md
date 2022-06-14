@@ -2,12 +2,12 @@
 lab:
   title: Gestire la sicurezza di Servizi cognitivi
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: dcab47cf20f54d6bcbed9a3e40081b703fc2d5ba
-ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
+ms.openlocfilehash: 9c8de44265ffa0846b6860fd7d416bb3be547ed9
+ms.sourcegitcommit: 5ffc20f6a590fe643c2b695b8dc04589411be36e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/12/2022
-ms.locfileid: "135801335"
+ms.lasthandoff: 05/31/2022
+ms.locfileid: "145951183"
 ---
 # <a name="manage-cognitive-services-security"></a>Gestire la sicurezza di Servizi cognitivi
 
@@ -33,7 +33,7 @@ Se non è già disponibile nella sottoscrizione, sarà necessario effettuare il 
 1. Aprire il portale di Azure all'indirizzo `https://portal.azure.com` ed eseguire l'accesso usando l'account Microsoft associato alla sottoscrizione di Azure.
 2. Selezionare il pulsante **&#65291;Crea una risorsa**, cercare *Servizi cognitivi* e creare una risorsa di **Servizi cognitivi** con le impostazioni seguenti:
     - **Sottoscrizione**: *la propria sottoscrizione di Azure*
-    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, si potrebbe non essere autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
+    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, è possibile che non si sia autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
     - **Area**: *scegliere una qualsiasi area disponibile*
     - **Nome**: *immettere un nome univoco*
     - **Piano tariffario**: Standard S0
@@ -228,7 +228,7 @@ A questo punto è possibile usare l'identità dell'entità servizio in un'applic
     python keyvault-client.py
     ```
 
-6. Quando richiesto, immettere del testo ed esaminare la lingua rilevata dal servizio. Ad esempio, provare a immettere "Hello", "Bonjour" e "Hola".
+6. Quando richiesto, immettere del testo ed esaminare la lingua rilevata dal servizio. Ad esempio, provare a immettere "Hello", "Bonjour" e "Gracias".
 7. Al termine del test dell'applicazione, immettere "quit" per arrestare il programma.
 
 ## <a name="more-information"></a>Altre informazioni

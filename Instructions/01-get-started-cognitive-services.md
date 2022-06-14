@@ -2,12 +2,12 @@
 lab:
   title: Introduzione a Servizi cognitivi
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: 4baba38b03c6d7bb5fe04fa5e73bb606e970550b
-ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
+ms.openlocfilehash: a05256a78dee051041320aa3556a43add5596ce9
+ms.sourcegitcommit: 5ffc20f6a590fe643c2b695b8dc04589411be36e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/12/2022
-ms.locfileid: "135801356"
+ms.lasthandoff: 05/31/2022
+ms.locfileid: "145951191"
 ---
 # <a name="get-started-with-cognitive-services"></a>Introduzione a Servizi cognitivi
 
@@ -31,7 +31,7 @@ I servizi basati sul cloud di Servizi cognitivi di Azure incapsulano funzionalit
 1. Aprire il portale di Azure all'indirizzo `https://portal.azure.com` ed eseguire l'accesso usando l'account Microsoft associato alla sottoscrizione di Azure.
 2. Selezionare il pulsante **&#65291;Crea una risorsa**, cercare *Servizi cognitivi* e creare una risorsa di **Servizi cognitivi** con le impostazioni seguenti:
     - **Sottoscrizione**: *la propria sottoscrizione di Azure*
-    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, si potrebbe non essere autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
+    - **Gruppo di risorse**: *scegliere o creare un gruppo di risorse. Se si usa una sottoscrizione con restrizioni, è possibile che non si sia autorizzati a creare un nuovo gruppo di risorse. Usare quello fornito*
     - **Area**: *scegliere una qualsiasi area disponibile*
     - **Nome**: *immettere un nome univoco*
     - **Piano tariffario**: Standard S0
@@ -54,7 +54,7 @@ Le API di Servizi cognitivi sono basate su REST, quindi è possibile usarle invi
     - **Python**: .env
 
     Aprire il file di configurazione e aggiornare i valori in modo che includano l'**endpoint** e una **chiave** di autenticazione per la risorsa di Servizi cognitivi. Salvare le modifiche.
-4. Si noti che la cartella **rest-client** contiene un file di codice per l'applicazione client:
+3. Si noti che la cartella **rest-client** contiene un file di codice per l'applicazione client:
 
     - **C#** : Program.cs
     - **Python**: rest-client.py
@@ -66,7 +66,7 @@ Le API di Servizi cognitivi sono basate su REST, quindi è possibile usarle invi
     - La richiesta inviata all'API è costituita da un oggetto JSON contenente i dati di input, in questo caso una raccolta di oggetti **documento**, ognuno dei quali con un **ID** e un **testo**.
     - La chiave per il servizio è inclusa nell'intestazione della richiesta per autenticare l'applicazione client.
     - La risposta del servizio è un oggetto JSON che l'applicazione client può analizzare.
-5. Fare clic con il pulsante destro del mouse sulla cartella **rest-client** e aprire un terminale integrato. Immettere quindi il comando specifico del linguaggio seguente per eseguire il programma:
+4. Fare clic con il pulsante destro del mouse sulla cartella **rest-client** e aprire un terminale integrato. Immettere quindi il comando specifico del linguaggio seguente per eseguire il programma:
 
     **C#**
 
@@ -80,8 +80,8 @@ Le API di Servizi cognitivi sono basate su REST, quindi è possibile usarle invi
     python rest-client.py
     ```
 
-6. Quando richiesto, immettere un testo ed esaminare la lingua rilevata dal servizio, che viene restituita nella risposta JSON. Ad esempio, provare a immettere "Hello", "Bonjour" e "Hola".
-7. Al termine del test dell'applicazione, immettere "quit" per arrestare il programma.
+5. Quando richiesto, immettere un testo ed esaminare la lingua rilevata dal servizio, che viene restituita nella risposta JSON. Ad esempio, provare a immettere "Hello", "Bonjour" e "Gracias".
+6. Al termine del test dell'applicazione, immettere "quit" per arrestare il programma.
 
 ## <a name="use-an-sdk"></a>Usare un SDK
 
