@@ -2,12 +2,12 @@
 lab:
   title: Creare una soluzione di risposta alle domande
   module: Module 6 - Building a QnA Solution
-ms.openlocfilehash: 0a71dc2c0185c51d8ccf390afd780dd914366be0
-ms.sourcegitcommit: 45e075a4b45a914d378900b4c00451a530d813de
+ms.openlocfilehash: 42b3b6e6955188d3d442a4f587ead6afe0f389c6
+ms.sourcegitcommit: a879eae298aaf2ab6415fc4fdb67f52f592d907a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/26/2022
-ms.locfileid: "145892513"
+ms.lasthandoff: 07/02/2022
+ms.locfileid: "146902482"
 ---
 # <a name="create-a-question-answering-solution"></a>Creare una soluzione di risposta alle domande
 
