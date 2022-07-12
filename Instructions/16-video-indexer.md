@@ -2,16 +2,18 @@
 lab:
   title: Analizzare video con Analizzatore video
   module: Module 8 - Getting Started with Computer Vision
-ms.openlocfilehash: cd67c472b5ee15efce232483afc8aeeac552b50c
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: ec23e53f363ed7c7df8fd598cfd1fc8807712f05
+ms.sourcegitcommit: 7191e53bc33cda92e710d957dde4478ee2496660
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625934"
+ms.lasthandoff: 07/09/2022
+ms.locfileid: "147041676"
 ---
 # <a name="analyze-video-with-video-analyzer"></a>Analizzare video con Analizzatore video
 
 Gran parte dei dati creati e utilizzati oggi è in formato video. **Analizzatore video per file multimediali** è un servizio basato su intelligenza artificiale che è possibile usare per indicizzare i video ed estrarre informazioni dettagliate.
+
+> **Nota**: Dal 21 giugno 2022 le funzionalità dei servizi cognitivi che restituiscono informazioni personali dell'utente finale sono limitate ai clienti a cui è stato concesso l'[accesso limitato](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-limited-access). Inoltre, le funzionalità che deducono lo stato emotivo non sono più disponibili. Queste restrizioni possono influire sull'esecuzione di questo esercizio del lab. Stiamo lavorando per risolvere questo problema, ma nel frattempo è possibile che si riscontrino alcuni errori durante l'esecuzione della procedura seguente. Ci scusiamo per l'inconveniente. Per altre informazioni sulle modifiche apportate da Microsoft e sul relativo motivo, vedere [Misure di sicurezza e investimenti responsabili nell'intelligenza artificiale per il riconoscimento facciale](https://azure.microsoft.com/blog/responsible-ai-investments-and-safeguards-for-facial-recognition/).
 
 ## <a name="clone-the-repository-for-this-course"></a>Clonare il repository per questo corso
 
